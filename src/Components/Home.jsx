@@ -50,8 +50,8 @@ const Home = () => {
             Discover reliable home assistance with Giggle! Hire skilled
             professionals for all your household needs. Join now and experience convenience at your doorstep.
           </p>
-          <div className="flex mt-4">
-            <div className="relative">
+          <div className="flex mt-4 justify-normal">
+            <div className="relative m-2">
               <input
                 type="text"
                 className="bg-white border rounded-l-full px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
