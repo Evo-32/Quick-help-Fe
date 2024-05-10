@@ -36,7 +36,7 @@ const Home = () => {
   const words = ["Quick help"]; // Update with your desired words
 
   return (
-<div className="min-h-screen flex items-center justify-center bg-[#a5bbd3] text-gray-300 p-4">
+<div className="font-serif min-h-screen flex items-center justify-center bg-[#a5bbd3] text-gray-300 p-4">
   <div className="relative mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between">
     <div className="home-info text-center md:text-left flex flex-col justify-center lg:pr-12">
       <h3 className="hello text-4xl font-bold mb-4 text-white">
