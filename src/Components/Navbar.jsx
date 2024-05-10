@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Home from "./Home";
+import { CiMenuFries } from "react-icons/ci";
 
 const Menu = ({ isOpen }) => {
   return (
     <ul
     id="mobileNav"
-      className={`absolute flex flex-col space-y-2 text-white top-16 left-0 ${
+      className={`absolute flex flex-col space-y-2 bg-[#a5bbd3] text-white top-16 left-0 w-full ${
         isOpen ? "block" : "hidden"
       }`}
     >
@@ -75,7 +75,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <button className="bg-white rounded-full hover:bg-[#893470] hover:text-white text-[#bf5084]">
+            <button className="bg-white rounded-full hover:bg-[#893470] hover:text-white text-[#bf5084] sm:px-6">
               <a href="/signin" className="flex items-center py-2 px-4">
                 Sign in
               </a>
@@ -85,15 +85,14 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             id="menuToggle"
-            className="text-white focus:outline-none"
+            className="text-white focus:outline-none bold text-2xl"
             onClick={toggleMenu}
           >
-            <i className="fas fa-bars text-2xl"></i>
+            <CiMenuFries />
           </button>
         </div>
         <Menu isOpen={isMenuOpen} />
       </div>
-      <Home />
     </div>
   );
 };
