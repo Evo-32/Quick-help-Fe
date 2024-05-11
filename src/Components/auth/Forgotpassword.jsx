@@ -31,7 +31,7 @@ const Forgotpassword = () => {
     };
   return (
        
-            <div className="bg-green-200 mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="bg-[#fafafa] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-lg">
                     <form
                         onSubmit={handleSignin}
@@ -41,7 +41,7 @@ const Forgotpassword = () => {
                         <div className="relative">
                             <input
                                 type="email"
-                                className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 text-blue-400 pe-12 text-sm shadow-sm"
+                                className="bg-white w-full rounded-lg border-gray-200 p-4 text-blue-400 pe-12 text-sm shadow-sm"
                                 placeholder="Email"
                                 value={email}
                                 onChange={handleEmailChange}

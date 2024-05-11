@@ -44,7 +44,7 @@ const Reset = () => {
     };
 
     return (
-        <div className="bg-green-200 mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="bg-[#fafafa] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-lg">
                 <form
                     onSubmit={handleResetPassword}
@@ -60,7 +60,7 @@ const Reset = () => {
                             type="password"
                             value={newPassword}
                             onChange={handleNewPasswordChange}
-                            className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
+                            className="bg-white w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
                             placeholder="New Password"
                         />
                         {errorNewPassword && <p className="text-red-500 text-center mt-1">{errorNewPassword}</p>}
@@ -71,7 +71,7 @@ const Reset = () => {
                             type="password"
                             value={confirmPassword}
                             onChange={handleConfirmPasswordChange}
-                            className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
+                            className="bg-white w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
                             placeholder="Confirm Password"
                         />
                         {errorConfirmPassword && <p className="text-red-500 text-center mt-1">{errorConfirmPassword}</p>}

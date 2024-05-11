@@ -24,7 +24,7 @@ const Confirmation = () => {
     };
 
     return (
-        <div className="bg-green-200 mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="bg-[#fafafa] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-lg">
                 <h1 className="text-center text-2xl text-blue-400 sm:text-2xl">
                     Confirmation Code
@@ -34,7 +34,7 @@ const Confirmation = () => {
     action="#"
     className="bg-yellow-100 mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
 >
-    <p className="text-center text-red-500 text-lg font-medium">
+    <p className="text-center text-pink-500 text-lg font-medium">
         Enter Confirmation Code
     </p>
 
@@ -43,7 +43,7 @@ const Confirmation = () => {
                 <input
                     type="text"
                     maxLength={1} 
-                    className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
+                    className="bg-white w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
                     placeholder=""
                     onChange={(e) => handleConfirmationCodeChange(e)}
                 />
@@ -52,7 +52,7 @@ const Confirmation = () => {
                 <input
                     type="text"
                     maxLength={1} 
-                    className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
+                    className="bg-white w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
                     placeholder=""
                     onChange={(e) => handleConfirmationCodeChange(e)}
                 />

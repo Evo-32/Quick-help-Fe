@@ -38,7 +38,7 @@ const Signup = () => {
   };
 
   return (
-    <main className="bg-green-200 flex items-center justify-center">
+    <main className="bg-[#fafafa] flex items-center justify-center">
       <div className="max-w-xl lg:max-w-3xl">
         <form
           onSubmit={handleSignup}
