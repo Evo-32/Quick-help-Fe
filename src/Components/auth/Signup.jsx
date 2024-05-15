@@ -1,20 +1,43 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios"
 
 const Signup = () => {
-  const [fullName, setFullName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-
+  
+    try {
+      const response = await axios.post(
+        "https://quickhelp-2.onrender.com/queen/",
+        {
+          userName: userName,
+          email: email,
+          password: password,
+        }
+      );
+  
+      if (response.status === 200 || response.status === 201) {
+        console.log("Signup successful:", response.data);
+        // Assuming navigate is defined elsewhere for routing
+        // navigate("/otp");
+      } else {
+        console.error("Unexpected status code:", response.status);
+      }
+    } catch (error) {
+      console.error("Error during signup:", error.message);
+    }
+  
     setError("");
 
-    if (!fullName.trim() || !lastName.trim() || !email.trim() || !password.trim() || !passwordConfirmation.trim()) {
+    if (
+      !userName.trim() ||
+      !email.trim() ||
+      !password.trim()
+    ) {
       setError("Please fill in all fields.");
       return;
     }
@@ -28,53 +51,33 @@ const Signup = () => {
       setError("Password must be at least 7 characters long.");
       return;
     }
-
-    if (password !== passwordConfirmation) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    console.log("Signup successful!");
   };
+  console.log("Signup successful!");
 
   return (
-    <main className="bg-[#fafafa] flex items-center justify-center">
+    <main className="bg-gray-50  min-h-screen flex items-center justify-center  mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-xl lg:max-w-3xl">
+        <h1 className="text-center text-2xl bold text-blue-400 sm:text-3xl">
+          Quick Help
+        </h1>
         <form
           onSubmit={handleSignup}
-          className="bg-yellow-100 mt-8 grid grid-cols-6 gap-6 mb-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+          className="bg-white mt-8 grid grid-cols-6 gap-6 mb-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
-          <div className="col-span-6 sm:col-span-3">
+          <div className="col-span-6">
             <label
-              htmlFor="FirstName"
+              htmlFor="userName"
               className="block text-sm font-medium text-gray-700"
             >
-              First Name
+              Full Name
             </label>
             <input
-              type="text"
-              id="FirstName"
-              name="first_name"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3">
-            <label
-              htmlFor="LastName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="LastName"
-              name="last_name"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              type="userName"
+              id="userName"
+              name="userName"
+              className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
           </div>
 
@@ -89,13 +92,13 @@ const Signup = () => {
               type="email"
               id="Email"
               name="email"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div className="col-span-6 sm:col-span-3">
+          <div className="col-span-6">
             <label
               htmlFor="Password"
               className="block text-sm font-medium text-gray-700"
@@ -106,33 +109,19 @@ const Signup = () => {
               type="password"
               id="Password"
               name="password"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3">
-            <label
-              htmlFor="PasswordConfirmation"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password Confirmation
-            </label>
-            <input
-              type="password"
-              id="PasswordConfirmation"
-              name="password_confirmation"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-              value={passwordConfirmation}
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
           </div>
 
           {error && <p className="col-span-6 text-red-500 text-sm">{error}</p>}
 
           <div className="col-span-6">
-            <label htmlFor="MarketingAccept" className="flex gap-4 items-center">
+            <label
+              htmlFor="MarketingAccept"
+              className="flex gap-4 items-center"
+            >
               <input
                 type="checkbox"
                 id="MarketingAccept"
@@ -154,9 +143,9 @@ const Signup = () => {
             </button>
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?{" "}
-              <Link to="/signin" className="text-gray-700 underline">
+              <a href="/signin" className="text-gray-700 underline">
                 Log in
-              </Link>
+              </a>
               .
             </p>
           </div>

@@ -32,7 +32,7 @@ const Confirmation = () => {
                 <form
     onSubmit={handleConfirmation}
     action="#"
-    className="bg-yellow-100 mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+    className="bg-white mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
 >
     <p className="text-center text-pink-500 text-lg font-medium">
         Enter Confirmation Code
@@ -61,7 +61,7 @@ const Confirmation = () => {
                 <input
                     type="text"
                     maxLength={1} 
-                    className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
+                    className="bg-white w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
                     placeholder=""
                     onChange={(e) => handleConfirmationCodeChange(e)}
                 />
@@ -70,7 +70,7 @@ const Confirmation = () => {
                 <input
                     type="text"
                     maxLength={1} 
-                    className="bg-pink-100 w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
+                    className="bg-white w-full rounded-lg border-gray-200 p-4 text-blue-400 text-center text-sm shadow-sm"
                     placeholder=""
                     onChange={(e) => handleConfirmationCodeChange(e)}
                 />
@@ -83,7 +83,7 @@ const Confirmation = () => {
         type="submit"
         className="block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white"
     >
-        Confirm
+        <a href="/">Confirm</a>
     </button>
 </form>
 
