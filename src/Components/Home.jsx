@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React,{useState,useEffect} from "react";
+import { motion } from "framer-motion";
 import { GoSearch } from "react-icons/go";
+import About from "./About"
+import Employee from "./Employee";
+import Contact from "./Contact";
 
 const TypingAnimation = ({ words }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -36,22 +40,34 @@ const Home = () => {
   const words = ["Quick help"]; // Update with your desired words
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#a5bbd3] text-gray-300 p-4">
-      <div className="relative mx-auto max-w-full px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-4">
-        <div className="home-info text-center md:text-left flex-col">
-          <h3 className="hello text-4xl font-bold mb-4 text-white">
+    <>
+    <motion.div
+      initial={{ opacity: 0, x: -50 }} // Initial animation properties
+      animate={{ opacity: 1, x: 0 }} // Animation properties to animate to
+      transition={{ duration: 1 }} // Animation duration
+      className="font-serif min-h-screen flex items-center justify-center bg-white text-gray-300 p-4"
+    >
+      <div className="relative mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }} // Initial animation properties
+          animate={{ opacity: 1, y: 0 }} // Animation properties to animate to
+          transition={{ duration: 1, delay: 0.5 }} // Animation duration with delay
+          className="home-info text-center md:text-left flex flex-col justify-center lg:pr-12"
+        >
+          <h3 className="hello text-4xl font-bold mb-4 text-black">
             Find the Best Freelancer
             <span className="name text-skin-color"></span>
           </h3>
-          <h3 className="my-profession text-4xl font-bold mb-4 text-white">
+          <h3 className="my-profession text-4xl font-bold mb-4 text-black">
             with <TypingAnimation words={words} />
           </h3>
-          <p className="text-gray-700">
-            Discover reliable home assistance with Giggle! Hire skilled
-            professionals for all your household needs. Join now and experience convenience at your doorstep.
+          <p className="text-gray-700 text-xl">
+            Discover reliable home assistance with Quick help! Hire skilled
+            professionals for all your household needs. Join now and experience
+            convenience at your doorstep.Quck service, Sparkling results.
           </p>
-          <div className="flex mt-4">
-            <div className="relative">
+          <div className="flex mt-4 justify-center sm:justify-start hidden sm:block text-xl">
+            <div className="relative m-2">
               <input
                 type="text"
                 className="bg-white border rounded-l-full px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -68,14 +84,25 @@ const Home = () => {
               </button>
             </div>
           </div>
-        </div>
-        <img
-          className="w-full h-full rounded-lg bg-gray-200"
-          src="https://i.pinimg.com/236x/69/b6/f2/69b6f2a1d63faf17a996256661d81671.jpg"
-          alt="Example Image"
-        />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }} // Initial animation properties
+          animate={{ opacity: 1, x: 0 }} // Animation properties to animate to
+          transition={{ duration: 1, delay: 0.5 }} // Animation duration with delay
+          className="lg:w-1/2 flex justify-center"
+        >
+          <img
+            className="rounded-lg shadow-lg border h-100 lg:h-120 w-auto max-w-full object-cover"
+            src="https://i.pinimg.com/736x/58/65/9c/58659c2359b148858b21c8f28aee6b79.jpg"
+            alt="Example Image"
+          />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
+    <About/>
+    <Employee/>
+    <Contact/>
+    </>
   );
 };
 

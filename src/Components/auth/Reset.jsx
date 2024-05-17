@@ -5,9 +5,10 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSignin = (e) => {
+  const handleReset = (e) => {
     e.preventDefault();
 
+    // Reset any previous error messages
     setError('');
 
     const trimmedEmail = email.trim();
@@ -37,17 +38,20 @@ const Signin = () => {
         setError('Password must be at least 7 characters long.');
         return;
     }
-  }
+
+    // Proceed with sign-in logic (e.g., make API call)
+    console.log('Signing in...');
+};
 
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setError(""); 
+    setError(""); // Clear error when user starts typing in email field
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setError("");
+    setError(""); // Clear error when user starts typing in password field
   };
 
   return (
@@ -57,12 +61,12 @@ const Signin = () => {
           Quick Help
         </h1>
         <form
-          onSubmit={handleSignin}
+          onSubmit={handleReset}
           action="#"
           className="bg-white mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
           <p className="text-center text-pink-500 text-lg font-medium">
-            Sign in
+            Reset
           </p>
 
           <div className="relative">
@@ -87,28 +91,15 @@ const Signin = () => {
 
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
-          <a href="/"><button
+          <a href="/setnew"><button
             type="submit"
             className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
               error ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={error !== ""}
           >
-            Sign in
+            Reset
           </button></a>
-
-          <p className="text-blue-500 text-center text-sm">
-            No account?
-            <a href="/signup" className=" underline">
-              Sign up
-            </a>
-          </p>
-
-          <p className="text-center mt-2">
-            <a href="/setnew" className="text-blue-500">
-              Forgot Password?
-            </a>
-          </p>
         </form>
       </div>
     </div>
