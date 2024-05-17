@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
+import Darkmode from "./Pages/Darkmode";
 
 const Menu = ({ isOpen, toggleMenu }) => {
   return (
@@ -79,12 +80,17 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="/loginas" className="flex items-center py-2 px-4">
+            <a
+              href="/loginas"
+              className="flex items-center py-2  hover:text-pink-600 px-4"
+            >
               Sign in
             </a>
           </li>
+          <li className={`isDarkMode ? 'dark' : 'light' flex items-center`}>
+            <Darkmode />
+          </li>
         </ul>
-        {/* Hamburger menu button for smaller screens */}
         <div className="md:hidden">
           <button
             id="menuToggle"

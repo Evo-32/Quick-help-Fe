@@ -5,9 +5,9 @@ import { MdArrowOutward, MdCheck } from "react-icons/md";
 const Contact = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 100 }} // Initial animation properties (off-screen and invisible)
-      animate={{ opacity: 1, y: 0 }} // Animation properties to animate to (on-screen and visible)
-      transition={{ duration: 0.8, delay: 0.2 }} // Animation duration and delay
+      initial={{ opacity: 0, y: 100 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.8, delay: 0.2 }} 
     >
       <div className="bg-[#fafafa] min-h-screen flex flex-col items-center justify-center p-5 text-gray-700 mt-7">
         <div className="relative mx-auto max-w-full px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-4">

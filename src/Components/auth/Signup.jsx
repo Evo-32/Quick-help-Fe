@@ -1,43 +1,35 @@
 import React, { useState } from "react";
-import axios from "axios"
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSignup = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await axios.post(
-        "https://quickhelp-2.onrender.com/queen/",
-        {
-          userName: userName,
-          email: email,
-          password: password,
-        }
-      );
-  
-      if (response.status === 200 || response.status === 201) {
-        console.log("Signup successful:", response.data);
-        // Assuming navigate is defined elsewhere for routing
-        // navigate("/otp");
-      } else {
-        console.error("Unexpected status code:", response.status);
-      }
-    } catch (error) {
-      console.error("Error during signup:", error.message);
-    }
-  
+
+    // try {
+    //   const response = await axios.post("https://quickhelp-2.onrender.com/QuickHelp/", {
+    //     userName: userName,
+    //     email: email,
+    //     password: password
+    //   });
+    //   console.log(response);
+    //   setTimeout(() => {
+    //     navigate('/confirm');
+    //   }, 2000);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  };
+
     setError("");
 
-    if (
-      !userName.trim() ||
-      !email.trim() ||
-      !password.trim()
-    ) {
+    if (!userName.trim() || !email.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
     }
@@ -51,8 +43,6 @@ const Signup = () => {
       setError("Password must be at least 7 characters long.");
       return;
     }
-  };
-  console.log("Signup successful!");
 
   return (
     <main className="bg-gray-50  min-h-screen flex items-center justify-center  mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -61,7 +51,7 @@ const Signup = () => {
           Quick Help
         </h1>
         <form
-          onSubmit={handleSignup}
+          onSubmit={handleSignUp}
           className="bg-white mt-8 grid grid-cols-6 gap-6 mb-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
           <div className="col-span-6">

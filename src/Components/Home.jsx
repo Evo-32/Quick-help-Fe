@@ -61,12 +61,12 @@ const Home = () => {
           <h3 className="my-profession text-4xl font-bold mb-4 text-black">
             with <TypingAnimation words={words} />
           </h3>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-xl">
             Discover reliable home assistance with Quick help! Hire skilled
             professionals for all your household needs. Join now and experience
             convenience at your doorstep.Quck service, Sparkling results.
           </p>
-          <div className="flex mt-4 justify-center sm:justify-start hidden sm:block">
+          <div className="flex mt-4 justify-center sm:justify-start hidden sm:block text-xl">
             <div className="relative m-2">
               <input
                 type="text"
