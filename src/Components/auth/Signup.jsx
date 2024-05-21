@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
@@ -9,40 +9,46 @@ const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   const response = await axios.post("https://quickhelp-2.onrender.com/QuickHelp/", {
-    //     userName: userName,
-    //     email: email,
-    //     password: password
-    //   });
-    //   console.log(response);
-    //   setTimeout(() => {
-    //     navigate('/confirm');
-    //   }, 2000);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
+    try{
+      axios.post('https://quickhelp-2.onrender.com/api/v1/auth/register',{
+        userName: userName,
+        email: email,
+        password:password
+      },{
+        headers: {
+          "Content-Type": 'application/json',
+        },
+      }).then((response) => {
+        console.log(response.data);
+        setTimeout(() => {
+          navigate('/auth/otpinput');
+        }, 3000)
+      })
+  }catch (error) {
+    console.error(error);
+  }
+  setError("");
 
-    setError("");
+  if (!userName.trim() || !email.trim() || !password.trim()) {
+    setError("Please fill in all fields.");
+    return;
+  }
 
-    if (!userName.trim() || !email.trim() || !password.trim()) {
-      setError("Please fill in all fields.");
-      return;
-    }
+  if (!email.includes("@gmail.com")) {
+    setError("Email must be a valid Gmail address.");
+    return;
+  }
 
-    if (!email.includes("@gmail.com")) {
-      setError("Email must be a valid Gmail address.");
-      return;
-    }
+  if (password.length < 7) {
+    setError("Password must be at least 7 characters long.");
+    return;
+  }
+}
 
-    if (password.length < 7) {
-      setError("Password must be at least 7 characters long.");
-      return;
-    }
 
   return (
     <main className="bg-gray-50  min-h-screen flex items-center justify-center  mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">

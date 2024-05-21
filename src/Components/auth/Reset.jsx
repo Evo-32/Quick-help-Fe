@@ -7,8 +7,26 @@ const Signin = () => {
 
   const handleReset = (e) => {
     e.preventDefault();
+    try{
+      axios.post('https://quickhelp-2.onrender.com/api/v1/auth/request',{
+        email: email,
+        password:password
+      },{
+        headers: {
+          "Content-Type": 'application/json',
+        },
+      }).then((response) => {
+        console.log(response.data);
+        setTimeout(() => {
+          navigate('/');
+        }, 3000)
+      }).catch((error) => {
+        console.log(error);
+      })
+  }catch (error) {
+    console.error(error);
+  }
 
-    // Reset any previous error messages
     setError('');
 
     const trimmedEmail = email.trim();

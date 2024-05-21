@@ -9,7 +9,7 @@ const Contact = () => {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.8, delay: 0.2 }} 
     >
-      <div className="bg-[#fafafa] min-h-screen flex flex-col items-center justify-center p-5 text-gray-700 mt-7">
+      <div className="bg-[#fafafa] min-h-screen flex flex-col items-center justify-around p-5 text-gray-700 mt-7">
         <div className="relative mx-auto max-w-full px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-4">
           <div className="home-info text-center md:text-left flex-col">
             <h3 className="hello text-4xl font-bold mb-4 text-yellow-400">

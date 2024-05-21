@@ -7,6 +7,26 @@ const Confirmation = () => {
     const handleConfirmation = (e) => {
         e.preventDefault();
 
+        try{
+            axios.post('https://quickhelp-2.onrender.com/api/v1/auth/verify',{
+              email: email,
+              password:password
+            },{
+              headers: {
+                "Content-Type": 'application/json',
+              },
+            }).then((response) => {
+              console.log(response.data);
+              setTimeout(() => {
+                navigate('/');
+              }, 3000)
+            }).catch((error) => {
+              console.log(error);
+            })
+        }catch (error) {
+          console.error(error);
+        }
+
 
         if (confirmationCode.trim() === '') {
             setError("Please enter the confirmation code.");

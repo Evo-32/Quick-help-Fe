@@ -45,9 +45,9 @@ const Home = () => {
       initial={{ opacity: 0, x: -50 }} // Initial animation properties
       animate={{ opacity: 1, x: 0 }} // Animation properties to animate to
       transition={{ duration: 1 }} // Animation duration
-      className="font-serif min-h-screen flex items-center justify-center bg-white text-gray-300 p-4"
+      className=" min-h-screen flex flex-col items-center justify-center p-5 text-gray-700"
     >
-      <div className="relative mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between">
+      <div className="relative  mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between">
         <motion.div
           initial={{ opacity: 0, y: 50 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties to animate to
@@ -70,7 +70,7 @@ const Home = () => {
             <div className="relative m-2">
               <input
                 type="text"
-                className="bg-white border rounded-l-full px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-white border rounded-l-full px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 placeholder="Search..."
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

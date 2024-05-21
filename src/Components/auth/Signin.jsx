@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +8,26 @@ const Signin = () => {
 
   const handleSignin = (e) => {
     e.preventDefault();
+
+    try{
+      axios.post('https://quickhelp-2.onrender.com/api/v1/auth/login',{
+        email: email,
+        password:password
+      },{
+        headers: {
+          "Content-Type": 'application/json',
+        },
+      }).then((response) => {
+        console.log(response.data);
+        setTimeout(() => {
+          navigate('/');
+        }, 3000)
+      }).catch((error) => {
+        console.log(error);
+      })
+  }catch (error) {
+    console.error(error);
+  }
 
     setError('');
 
