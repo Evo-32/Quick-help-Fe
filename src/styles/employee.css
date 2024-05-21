@@ -1,0 +1,75 @@
+.content {
+    width: 75%;
+  }
+  .content--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header--title {
+    color: #526d82;
+  }/* FormComponentWorkers.css */
+
+/* Adjusted content width */
+.content {
+  width: 75%;
+}
+
+/* Flex layout for content header */
+.content--header {
+  display: flex;
+}
+
+/* Title color */
+.header--title {
+  color: #526d82;
+}
+
+/* Form styles */
+.worker-form {
+  width: 80%; /* Adjusted form width */
+  margin: 50px auto; /* Centered the form vertically and horizontally */
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: calc(100% - 22px); /* Adjusted input width to accommodate padding and border */
+  padding: 8px; /* Reduced padding */
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Save button styles */
+.save-button {
+  padding: 10px 20px;
+  background-color: #27374d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #27374d;
+}
+.worker-form h2 {
+  color: #526d82; /* Matches the color of the "Jobs" header */
+  margin-bottom: 20px; /* Add spacing below the header */
+}

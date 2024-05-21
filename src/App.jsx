@@ -1,19 +1,36 @@
-import React from 'react'
-import Sidebar from './components/Sidebar'
-import Content from './components/Content'
-import Profile from './components/Profile'
-import "./App.css"
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ReviewsPage from './components/ReviewsPage'; 
+import EmployeesPage from './components/EmployeesPage'; 
+import JobsPage from './components/JobsPage'; 
+import "./App.css";
+import DashBoardPage from './components/DashBoardPage';
+import ContactUsPage from './components/ContactUsPage';
+import AuthPages from './components/AuthPages';
+import AddEditJobPage from './components/AddEditJobPage';
+import FormComponentEmployees from './components/FormComponentEmployees';
 
 const App = () => {
   return (
-    <div className="dashboard">
-      <Sidebar/>
-      <div className='dashboard--content'>
-        <Content/>
-        <Profile/>
+    <Router>
+      <div className="dashboard">
+        <div className='dashboard--content'>
+          <Routes>
+            <Route path="/" element={<AuthPages />}>
+              <Route index element={<DashBoardPage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
+              <Route path="/employee" element={<EmployeesPage />} />
+              <Route path="/employees/add" element={<FormComponentEmployees/>} /> // Route for adding a worker
+              <Route path="/jobs" element={<JobsPage />} />
+              <Route path="/contactus" element={<ContactUsPage />} />
+              <Route path="/jobs/add" element={<AddEditJobPage />} />
+              <Route path="/jobs/edit/:index" element={<AddEditJobPage />} />
+            </Route>
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 
-export default App
+export default App;

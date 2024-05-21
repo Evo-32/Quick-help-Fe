@@ -1,14 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   BiBookAlt,
-  BiHome,
-  BiMessage,
-  BiSolidReport,
-  BiStats,
-  BiTask,
-  BiHelpCircle,
+
 } from "react-icons/bi";
 import "../styles/sidebar.css";
+import { MdOutlineContactPhone } from "react-icons/md";
+import { GiNetworkBars } from "react-icons/gi";
+import { MdReviews } from "react-icons/md";
+import { MdOutlineWork } from "react-icons/md";
+import { HiUserGroup } from "react-icons/hi";
 
 const Sidebar = () => {
   return (
@@ -18,32 +19,35 @@ const Sidebar = () => {
         <h2>QuickHelp</h2>
       </div>
       <div className="menu--list">
-        <a href="#" className="item">
-          <BiHome className="icon" />
+        <NavLink to="/" className="item" activeclassname="active">
+          <GiNetworkBars className="icon" />
           Dashboard
-        </a>
-        <a href="#" className="item">
-          <BiTask className="icon"/>
-          Assignment
-        </a>
-        <a href="#" className="item">
-          <BiSolidReport className="icon"/>
-          Report
-        </a>
-        <a href="#" className="item">
-          <BiStats className="icon" />
-          Stats
-        </a>
-        <a href="#" className="item">
-          <BiMessage className="icon"/>
-          Message
-        </a>
-        <a href="#" className="item">
-          <BiHelpCircle className="icon"/>
-          Help
-        </a>
+        </NavLink>
+        <NavLink to="/jobs" className="item" activeclassname="active">
+          <MdOutlineWork className="icon" />
+          Jobs
+        </NavLink>
+        <NavLink to="/employee" className="item" activeclassname="active">
+          <HiUserGroup className="icon" />
+          Workers
+        </NavLink>
+        <NavLink to="/reviews" className="item" activeclassname="active">
+          <MdReviews className="icon" />
+          Reviews
+        </NavLink>
+        <NavLink to="/contactus"
+          className="item"
+          activeclassname="active"
+        >
+          <MdOutlineContactPhone className="icon" />
+          Contact Us
+        </NavLink>
+        <button className="item logout">
+  Logout
+</button>
       </div>
     </div>
+   
   );
 };
 
