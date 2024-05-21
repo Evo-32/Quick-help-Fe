@@ -60,46 +60,64 @@ const About = () => {
       </div>
 
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <h3 className="font-bold text-3xl">Our Services</h3>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 wrap">
+        <h3 className="font-bold text-3xl mb-6">Our Services</h3>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <div
+            <article
               key={index}
-              className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="overflow-hidden rounded-lg shadow transition hover:shadow-lg"
             >
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-auto"
+                className="h-56 w-full object-cover"
               />
-              <h2 className="mt-2 text-xl font-bold">{service.title}</h2>
-            </div>
+              <div className="bg-white p-4 sm:p-6">
+                <h2 className="mt-0.5 text-lg text-gray-900">{service.title}</h2>
+                <p className="text-gray-500 mt-2">{service.description}</p>
+                <a
+                  href="#"
+                  className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                >
+                  Find out more
+                  <span
+                    aria-hidden="true"
+                    className="block transition-all group-hover:ms-0.5 rtl:rotate-180"
+                  >
+                    &rarr;
+                  </span>
+                </a>
+              </div>
+            </article>
           ))}
         </div>
       </div>
     </div>
-
   );
 };
 
 const services = [
   {
     title: "Babysitting",
+    description: "Need a night out? Let us take care of your little ones while you enjoy some adult time.",
     image:
       "https://i.pinimg.com/564x/4e/41/48/4e4148bd44e7e74f755cb4a147b07aae.jpg",
   },
   {
     title: "Cooking",
+    description: "Tired of cooking every night? Hire our chefs to prepare delicious meals for your family.",
     image:
       "https://i.pinimg.com/564x/45/ec/5e/45ec5eda3c591804321e23b22e8e1313.jpg",
   },
   {
     title: "Cleaning",
+    description: "Let our cleaning experts tackle the mess while you focus on more important things.",
     image:
       "https://i.pinimg.com/564x/1c/ee/48/1cee48b221bf9ba2bd7d6095d7bb60df.jpg",
   },
   {
     title: "Laundry",
+    description: "Never worry about folding clothes again. We'll handle your laundry with care.",
     image:
       "https://i.pinimg.com/564x/73/61/1b/73611b88686a58f457b1eac7f7b2118a.jpg",
   },

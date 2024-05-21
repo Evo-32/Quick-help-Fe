@@ -6,7 +6,7 @@ const EmploymentForm = () => {
     address: '',
     phoneNumber: '',
     numberOfPeopleAtHome: '',
-    idNumber: '',
+    idNumber: '',   
     additionalInfo: ''
   });
 
@@ -17,8 +17,7 @@ const EmploymentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Example: log form data to console
-    // Reset form after submission
+    console.log(formData); 
     setFormData({
       name: '',
       address: '',
@@ -40,7 +39,7 @@ const EmploymentForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required
         />
       </div>
@@ -53,7 +52,7 @@ const EmploymentForm = () => {
           name="address"
           value={formData.address}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required
         />
       </div>
@@ -66,7 +65,7 @@ const EmploymentForm = () => {
           name="phoneNumber"
           value={formData.phoneNumber}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required
         />
       </div>
@@ -79,7 +78,7 @@ const EmploymentForm = () => {
           name="numberOfPeopleAtHome"
           value={formData.numberOfPeopleAtHome}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required
         />
       </div>
@@ -92,7 +91,7 @@ const EmploymentForm = () => {
           name="idNumber"
           value={formData.idNumber}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required
         />
       </div>
@@ -104,7 +103,7 @@ const EmploymentForm = () => {
           name="additionalInfo"
           value={formData.additionalInfo}
           onChange={handleChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
         />
       </div>
 
