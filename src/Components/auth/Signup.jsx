@@ -9,46 +9,50 @@ const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    try{
-      axios.post('https://quickhelp-2.onrender.com/api/v1/auth/register',{
+    // Clear previous errors
+    setError("");
+
+    // Basic validation
+    if (!userName.trim() || !email.trim() || !password.trim()) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    if (!email.includes("@gmail.com")) {
+      setError("Email must be a valid Gmail address.");
+      return;
+    }
+
+    if (password.length < 7) {
+      setError("Password must be at least 7 characters long.");
+      return;
+    }
+
+    // Form submission
+    try {
+      const response = await axios.post('https://quickhelp-2.onrender.com/api/v1/auth/register', {
         userName: userName,
         email: email,
-        password:password
-      },{
+        password: password
+      }, {
         headers: {
           "Content-Type": 'application/json',
         },
-      }).then((response) => {
-        console.log(response.data);
-        setTimeout(() => {
-          navigate('/auth/otpinput');
-        }, 3000)
-      })
-  }catch (error) {
-    console.error(error);
-  }
-  setError("");
+      });
 
-  if (!userName.trim() || !email.trim() || !password.trim()) {
-    setError("Please fill in all fields.");
-    return;
-  }
+      console.log(response.data);
 
-  if (!email.includes("@gmail.com")) {
-    setError("Email must be a valid Gmail address.");
-    return;
-  }
+      // Redirect to the confirm page after successful signup
+      navigate('/auth/otpinput');
 
-  if (password.length < 7) {
-    setError("Password must be at least 7 characters long.");
-    return;
-  }
-}
-
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred during signup. Please try again.");
+    }
+  };
 
   return (
     <main className="bg-gray-50  min-h-screen flex items-center justify-center  mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -68,7 +72,7 @@ const Signup = () => {
               Full Name
             </label>
             <input
-              type="userName"
+              type="text"
               id="userName"
               name="userName"
               className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"

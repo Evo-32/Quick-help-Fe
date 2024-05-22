@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 
 const Number = ({ n }) => {
@@ -12,6 +12,9 @@ const Number = ({ n }) => {
 };
 
 const About = () => {
+  const [selectedService, setSelectedService] = useState(null);
+  const [employees, setEmployees] = useState([]);
+
   useEffect(() => {
     const hiddenElements = document.querySelectorAll("#hidden");
     hiddenElements.forEach((element) => {
@@ -30,6 +33,16 @@ const About = () => {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (selectedService) {
+      const serviceName = selectedService.toLowerCase().replace(" ", "");
+      fetch(`https://quickhelp-2.onrender.com/api/v1/employee/getByjobs/${serviceName}`)
+        .then((response) => response.json())
+        .then((data) => setEmployees(data))
+        .catch((error) => console.error("Error fetching employees:", error));
+    }
+  }, [selectedService]);
 
   return (
     <div className="bg-[#fafafa] min-h-screen flex flex-col items-center justify-center p-5 text-gray-700 mt-7">
@@ -75,8 +88,8 @@ const About = () => {
               <div className="bg-white p-4 sm:p-6">
                 <h2 className="mt-0.5 text-lg text-gray-900">{service.title}</h2>
                 <p className="text-gray-500 mt-2">{service.description}</p>
-                <a
-                  href="#"
+                <button
+                  onClick={() => setSelectedService(service.title)}
                   className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
                 >
                   Find out more
@@ -86,12 +99,40 @@ const About = () => {
                   >
                     &rarr;
                   </span>
-                </a>
+                </button>
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      {selectedService && (
+        <div className="max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+          <h3 className="font-bold text-3xl mb-6">Employees for {selectedService}</h3>
+          {employees.length > 0 ? (
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {employees.map((employee, index) => (
+                <article
+                  key={index}
+                  className="overflow-hidden rounded-lg shadow transition hover:shadow-lg"
+                >
+                  <img
+                    src={employee.image}
+                    alt={employee.name}
+                    className="h-56 w-full object-cover"
+                  />
+                  <div className="bg-white p-4 sm:p-6">
+                    <h2 className="mt-0.5 text-lg text-gray-900">{employee.name}</h2>
+                    <p className="text-gray-500 mt-2">{employee.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xl text-gray-500">Loading employees...</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
