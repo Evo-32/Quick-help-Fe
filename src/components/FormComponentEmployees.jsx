@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { addEmployee } from '../api/employeeApi';
 
 const FormComponentEmployees = () => {
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate();
   const [employee, setEmployee] = useState({
     profilePicture: '',
     firstName: '',
@@ -11,10 +11,10 @@ const FormComponentEmployees = () => {
     email: '',
     phone: '',
     idCard: '',
-    job: 'Housemaid', // Default value: Housemaid
+    job: 'Housemaid',
     experience: '',
-    minSalary: '',
-    status: 'Retired' // Default value: Retired
+    min_salary: '',
+    status: 'Retired',
   });
 
   const handleChange = (e) => {
@@ -23,17 +23,20 @@ const FormComponentEmployees = () => {
   };
 
   const handleFileChange = (e) => {
-    setEmployee({ ...employee, profilePicture: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setEmployee({ ...employee, profilePicture: file });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Submitting employee data:', employee);
       await addEmployee(employee);
-      navigate('/employees'); // Use navigate function to redirect to /employees
+      navigate('/employees', { state: { message: 'Employee added successfully!' } });
     } catch (error) {
-      console.error('Error adding employee:', error);
-      // Handle error state here
+      console.error('Error adding employee:', error.response ? error.response.data : error.message);
     }
   };
 
@@ -141,12 +144,12 @@ const FormComponentEmployees = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="minSalary">Min Salary</label>
+          <label htmlFor="min_salary">Min Salary</label>
           <input 
             type="text" 
-            id="minSalary" 
-            name="minSalary" 
-            value={employee.minSalary} 
+            id="min_salary" 
+            name="min_salary" 
+            value={employee.min_salary} 
             onChange={handleChange} 
             required 
           />

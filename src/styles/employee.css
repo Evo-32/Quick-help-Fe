@@ -73,3 +73,68 @@
   color: #526d82; /* Matches the color of the "Jobs" header */
   margin-bottom: 20px; /* Add spacing below the header */
 }
+/* employee.css */
+
+.content {
+  margin: 20px;
+}
+
+.content--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header--title {
+  font-size: 24px;
+}
+
+.add-button, .save-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-button:hover, .save-button:hover {
+  background-color: #218838;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.employee-table th {
+  background-color: #f2f2f2;
+}
+
+.employee-table img {
+  border-radius: 50%;
+}
