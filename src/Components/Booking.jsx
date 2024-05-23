@@ -4,6 +4,7 @@ const EmploymentForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
+    email: '',
     phoneNumber: '',
     numberOfPeopleAtHome: '',
     idNumber: '',   
@@ -21,6 +22,7 @@ const EmploymentForm = () => {
     setFormData({
       name: '',
       address: '',
+      email:'',
       phoneNumber: '',
       numberOfPeopleAtHome: '',
       idNumber: '',
@@ -31,6 +33,9 @@ const EmploymentForm = () => {
   return (
     <div className='mt-10 p-5'>
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8 p-6 bg-white rounded shadow-lg">
+    <p className="text-center text-yellow-500 text-lg font-medium">
+            Employer Book Form
+          </p>
       <div className="mb-4">
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name:</label>
         <input
@@ -51,6 +56,19 @@ const EmploymentForm = () => {
           id="address"
           name="address"
           value={formData.address}
+          onChange={handleChange}
+          className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
+          required
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Email:</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value={formData.email}
           onChange={handleChange}
           className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
           required

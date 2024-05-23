@@ -47,7 +47,7 @@ const Home = () => {
       transition={{ duration: 1 }} // Animation duration
       className=" min-h-screen flex flex-col items-center justify-center p-5 text-gray-700"
     >
-      <div className="relative  mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between">
+      <div className="relative mt-5 py-16  lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }} // Initial animation properties
           animate={{ opacity: 1, y: 0 }} // Animation properties to animate to
