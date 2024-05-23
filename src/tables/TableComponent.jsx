@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import axios from 'axios';
 
-const TableComponent = ({ data, handleDelete, handleEdit }) => {
+const TableComponent = ({ handleDelete, handleEdit }) => {
+  const [fetch, setFetch] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://quickhelp-2.onrender.com/api/v1/jobs/getAll");
+        console.log(response.data);
+        setFetch(response.data || []); // Ensure fetch is set to an empty array if response.data is undefined
+      } catch (error) {
+        console.log(error);
+        setFetch([]); // Set fetch to an empty array in case of error
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="table-container">
       <div className="overflow-x-auto sm:-mx-10">
@@ -18,23 +36,23 @@ const TableComponent = ({ data, handleDelete, handleEdit }) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.map((job, index) => (
+                {fetch.map((jobs, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <img src={job.picture} alt="Job" className="job-picture"/>
+                      <img src={jobs.Picture} alt="Job" className="job-picture"/>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{job.name}</div>
+                      <div className="text-sm text-gray-900">{jobs.JobName}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{job.description}</div>
+                      <div className="text-sm text-gray-900">{jobs.Description}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium gap-4">
                       <div className='flex gap-5'>
-                        <button className="p-2" onClick={() => handleDelete(job.id)}>
+                        <button className="p-2" onClick={() => handleDelete(jobs.id)}>
                           <MdDelete />
                         </button>
-                        <button className="p-2" onClick={() => handleEdit(job.id)}>
+                        <button className="p-2" onClick={() => handleEdit(jobs.id)}>
                           <FaEdit />
                         </button>
                       </div>

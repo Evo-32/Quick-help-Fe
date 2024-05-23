@@ -10,15 +10,23 @@ const JobsPage = () => {
 
   useEffect(() => {
     const loadJobs = async () => {
-      const jobs = await fetchJobs();
-      setData(jobs);
+      try {
+        const jobs = await fetchJobs();
+        setData(jobs);
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+      }
     };
     loadJobs();
   }, []);
 
   const handleDelete = async (id) => {
-    await deleteJob(id);
-    setData(data.filter((job) => job.id !== id));
+    try {
+      await deleteJob(id);
+      setData(data.filter((jobs) => jobs.id !== id));
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
   };
 
   const handleAddJob = () => {

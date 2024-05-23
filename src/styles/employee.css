@@ -1,128 +1,48 @@
 .content {
-    width: 75%;
-  }
-  .content--header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header--title {
-    color: #526d82;
-  }/* FormComponentWorkers.css */
-
-/* Adjusted content width */
-.content {
+  padding: 20px;
   width: 75%;
-}
-
-/* Flex layout for content header */
-.content--header {
-  display: flex;
-}
-
-/* Title color */
-.header--title {
-  color: #526d82;
-}
-
-/* Form styles */
-.worker-form {
-  width: 80%; /* Adjusted form width */
-  margin: 50px auto; /* Centered the form vertically and horizontally */
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.form-group input {
-  width: calc(100% - 22px); /* Adjusted input width to accommodate padding and border */
-  padding: 8px; /* Reduced padding */
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-/* Save button styles */
-.save-button {
-  padding: 10px 20px;
-  background-color: #27374d;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-  background-color: #27374d;
-}
-.worker-form h2 {
-  color: #526d82; /* Matches the color of the "Jobs" header */
-  margin-bottom: 20px; /* Add spacing below the header */
-}
-/* employee.css */
-
-.content {
-  margin: 20px;
 }
 
 .content--header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .header--title {
-  font-size: 24px;
+  color: #526d82;
+  font-size: 2em;
 }
 
-.add-button, .save-button {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
+.add-employee-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  color: #dde6ed;
+  background: #526d82;
 }
 
-.add-button:hover, .save-button:hover {
-  background-color: #218838;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-group input, .form-group select {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.add-employee-button:hover {
+  background: #27374d;
+  color: #dde6ed !important;
 }
 
 .table-container {
-  margin-top: 20px;
+  overflow-x: auto;
 }
 
 .employee-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .employee-table th, .employee-table td {
@@ -133,8 +53,95 @@
 
 .employee-table th {
   background-color: #f2f2f2;
+  font-weight: bold;
 }
 
-.employee-table img {
+.employee-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.action-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #ffc107;
+  color: white;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.save-button {
+  padding: 12px 24px;
+  background-color: #27374d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #1d2b3a;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
 }

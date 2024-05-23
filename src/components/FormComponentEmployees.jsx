@@ -11,7 +11,7 @@ const FormComponentEmployees = () => {
     email: '',
     phone: '',
     idCard: '',
-    job: 'Housemaid',
+    jobName: 'Housemaid',
     experience: '',
     min_salary: '',
     status: 'Retired',
@@ -34,7 +34,7 @@ const FormComponentEmployees = () => {
     try {
       console.log('Submitting employee data:', employee);
       await addEmployee(employee);
-      navigate('/employees', { state: { message: 'Employee added successfully!' } });
+      navigate('/employee', { state: { message: 'Employee added successfully!' } });
     } catch (error) {
       console.error('Error adding employee:', error.response ? error.response.data : error.message);
     }
@@ -91,6 +91,17 @@ const FormComponentEmployees = () => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <input 
+            type="dateOfBirth" 
+            id="dateOfBirth" 
+            name="dateOfBirth" 
+            value={employee.dateOfBirth} 
+            onChange={handleChange} 
+            required 
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="phone">Phone</label>
           <input 
             type="tel" 
@@ -113,24 +124,15 @@ const FormComponentEmployees = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="job">Job</label>
-          <select 
-            id="job" 
-            name="job" 
-            value={employee.job} 
+          <label htmlFor="JobName">Job Name</label>
+          <input 
+            type="text" 
+            id="JobName" 
+            name="JobName" 
+            value={employee.JobName} 
             onChange={handleChange} 
             required 
-          >
-            <option value="Housemaid">Housemaid</option>
-            <option value="Personal trainer">Personal trainer</option>
-            <option value="Gatekeeper">Gatekeeper</option>
-            <option value="BabySitter">Baby Sitter</option>
-            <option value="Plumber">Plumber</option>
-            <option value="Gardener">Gardener</option>
-            <option value="Home chef">Home chef</option>
-            <option value="Caregiver">Caregiver</option>
-            <option value="Home Tutor">Home Tutor</option>
-          </select>
+          />
         </div>
         <div className="form-group">
           <label htmlFor="experience">Experience</label>

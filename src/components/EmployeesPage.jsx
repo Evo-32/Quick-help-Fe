@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { fetchEmployees } from '../api/employeeApi';
+import { fetchEmployees, deleteEmployee } from '../api/employeeApi';
+import TableComponentEmployees from './TableComponentEmployees';
+import '../styles/employee.css';
 
 const EmployeesPage = () => {
   const location = useLocation();
@@ -11,18 +13,26 @@ const EmployeesPage = () => {
     const getEmployees = async () => {
       try {
         const employeesData = await fetchEmployees();
-        if (Array.isArray(employeesData)) {
-          setEmployees(employeesData);
-        } else {
-          console.error('API did not return an array');
-        }
+        setEmployees(employeesData);
       } catch (error) {
         console.error('Error fetching employees:', error);
       }
     };
-
     getEmployees();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteEmployee(id);
+      setEmployees(employees.filter(employee => employee.id !== id));
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+
+  const handleEdit = (id) => {
+    // Navigate to edit page
+  };
 
   return (
     <div className='content'>
@@ -31,47 +41,7 @@ const EmployeesPage = () => {
         <h1 className="header--title">Employees</h1>
         <Link to="/employees/add" className="add-employee-button">Add Employee</Link>
       </div>
-      <table className="employee-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Profile Picture</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>ID Card</th>
-            <th>Job</th>
-            <th>Experience</th>
-            <th>Min Salary</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
-              <td>
-                <img src={employee.profilePicture} alt={`${employee.firstName} ${employee.lastName}`} />
-              </td>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.email}</td>
-              <td>{employee.phone}</td>
-              <td>{employee.idCard}</td>
-              <td>{employee.job}</td>
-              <td>{employee.experience}</td>
-              <td>{employee.min_salary}</td>
-              <td>{employee.status}</td>
-              <td>
-                <Link to={`/employees/edit/${employee.id}`} className="edit-button">Edit</Link>
-                <button onClick={() => handleDelete(employee.id)} className="delete-button">Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableComponentEmployees employees={employees} onEdit={handleEdit} onDelete={handleDelete} />
     </div>
   );
 };

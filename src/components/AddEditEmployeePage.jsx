@@ -2,11 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { addEmployee, updateEmployee, fetchEmployees } from '../api/employeeApi';
 import FormComponentEmployees from './FormComponentEmployees';
+import '../styles/employee.css';
 
 const AddEditWorkerPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [employee, setEmployee] = useState({ profilePicture: '', name: '', position: '' });
+  const [employee, setEmployee] = useState({
+    profilePicture: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    idCard: '',
+    JobName: '',
+    experience: '',
+    min_salary: '',
+    status: '',
+    dateOfBirth: '',
+  });
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {

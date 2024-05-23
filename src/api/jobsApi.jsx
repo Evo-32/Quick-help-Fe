@@ -1,47 +1,67 @@
-const API_URL = "http://your-api-url.com"; // Replace with your actual API URL
+import axios from 'axios';
 
+const API_URL = 'https://quickhelp-2.onrender.com/api/v1/jobs'; // Adjust URL if necessary
+
+// Fetch jobs
 export const fetchJobs = async () => {
-  const response = await fetch(`${API_URL}/jobs`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch jobs");
+  try {
+    const res = await axios.get(`${API_URL}/getAll`);
+    return res.data; // Adjust based on the structure of your API response
+  } catch (error) {
+    console.error('Error fetching jobs:', error);
+    throw new Error('Failed to fetch jobs');
   }
-  return response.json();
 };
 
+// Add job
 export const addJob = async (job) => {
-  const response = await fetch(`${API_URL}/jobs`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(job),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to add job");
+  try {
+    const res = await axios.post(`${API_URL}/createJob`, job, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return res.data;
+  } catch (error) {
+    if (error.response) {
+      console.error('Server responded with:', error.response.data);
+    } else {
+      console.error('Error:', error.message);
+    }
+    throw new Error('Failed to add job');
   }
-  return response.json();
 };
 
+// Update job
 export const updateJob = async (id, job) => {
-  const response = await fetch(`${API_URL}/jobs/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(job),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to update job");
+  try {
+    const res = await axios.put(`${API_URL}/updateJob/${id}`, job, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return res.data;
+  } catch (error) {
+    if (error.response) {
+      console.error(`Error updating job with id ${id}:`, error.response.data);
+    } else {
+      console.error('Error:', error.message);
+    }
+    throw new Error(`Failed to update job with id ${id}`);
   }
-  return response.json();
 };
 
+// Delete job
 export const deleteJob = async (id) => {
-  const response = await fetch(`${API_URL}/jobs/${id}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) {
-    throw new Error("Failed to delete job");
+  try {
+    const res = await axios.delete(`${API_URL}/delete/${id}`);
+    return res.data; // Adjust based on the structure of your API response
+  } catch (error) {
+    if (error.response) {
+      console.error(`Error deleting job with id ${id}:`, error.response.data);
+    } else {
+      console.error('Error:', error.message);
+    }
+    throw new Error(`Failed to delete job with id ${id}`);
   }
-  return response.json();
 };

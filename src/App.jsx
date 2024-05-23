@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ReviewsPage from './components/ReviewsPage'; 
 import EmployeesPage from './components/EmployeesPage'; 
 import JobsPage from './components/JobsPage'; 
 import "./App.css";
@@ -18,7 +17,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<AuthPages />}>
               <Route index element={<DashBoardPage />} />
-              <Route path="/reviews" element={<ReviewsPage />} />
               <Route path="/employee" element={<EmployeesPage />} />
               <Route path="/employees/add" element={<FormComponentEmployees/>} /> // Route for adding a worker
               <Route path="/jobs" element={<JobsPage />} />

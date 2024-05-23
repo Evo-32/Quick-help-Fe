@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormComponent = ({ job, handleChange, handleSave, handleFileChange }) => {
+const FormComponent = ({ jobs, handleChange, handleSave, handleFileChange }) => {
   return (
     <form onSubmit={handleSave} className="job-form">
       <div className="form-group">
@@ -20,7 +20,7 @@ const FormComponent = ({ job, handleChange, handleSave, handleFileChange }) => {
           type="text" 
           id="name" 
           name="name" 
-          value={job.name} 
+          value={jobs.JobName} 
           onChange={handleChange} 
           required 
         />
@@ -30,7 +30,7 @@ const FormComponent = ({ job, handleChange, handleSave, handleFileChange }) => {
         <textarea 
           id="description" 
           name="description" 
-          value={job.description} 
+          value={jobS.Description} 
           onChange={handleChange} 
           required 
         ></textarea>

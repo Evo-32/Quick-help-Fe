@@ -7,7 +7,6 @@ import {
 import "../styles/sidebar.css";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { GiNetworkBars } from "react-icons/gi";
-import { MdReviews } from "react-icons/md";
 import { MdOutlineWork } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
 
@@ -30,10 +29,6 @@ const Sidebar = () => {
         <NavLink to="/employee" className="item" activeclassname="active">
           <HiUserGroup className="icon" />
           Workers
-        </NavLink>
-        <NavLink to="/reviews" className="item" activeclassname="active">
-          <MdReviews className="icon" />
-          Reviews
         </NavLink>
         <NavLink to="/contactus"
           className="item"
