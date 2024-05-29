@@ -68,7 +68,7 @@ const Home = () => {
               results.
             </p>
             <div className="flex mt-4 justify-center sm:justify-start hidden sm:block text-xl">
-              <div className="relative m-2">
+              {/* <div className="relative m-2">
                 <input
                   type="text"
                   className="bg-white border rounded-l-full px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -83,7 +83,7 @@ const Home = () => {
                 >
                   Search
                 </button>
-              </div>
+              </div> */}
             </div>
           </motion.div>
           <motion.div

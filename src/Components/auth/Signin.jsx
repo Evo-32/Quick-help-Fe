@@ -1,7 +1,6 @@
 // Components/auth/Signin.js
 import React, { useState } from "react";
 import axios from "axios";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -9,34 +8,54 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const isAdmin = false; // Change this to true if you want to pre-fill admin credentials
 
+  // Function to handle sign in
   const handleSignin = async (e) => {
     e.preventDefault();
 
-    // Clear any previous error
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      setError('Please fill in both email and password.');
+      return;
+    }
+
+    if (!trimmedEmail.includes('@gmail.com') && !trimmedEmail.includes('@net.com')) {
+      setError('Email must be a valid Gmail or Net address.');
+      return;
+    }
+
+    if (trimmedPassword.length < 7) {
+      setError('Password must be at least 7 characters long.');
+      return;
+    }
+
     setError('');
 
     try {
       const response = await axios.post('https://quickhelp-2.onrender.com/api/v1/auth/login', {
-        email,
-        password
+        email: email,
+        password: password
       }, {
         headers: {
           "Content-Type": 'application/json',
         },
       });
 
-      const { user } = response.data;
+      const { user } = response.data; // Adjust this according to your actual response structure
 
-      if (user.role === 'admin') {
+      if (user.Role === 'Admin') {
         login(user);
-        navigate('/dashboard'); // Navigate to the dashboard route
+        navigate('/dashboard');
       } else {
+        // For regular users, you can handle sign in differently or just proceed
+        // with the regular sign in process
         login(user);
-        navigate('/user-dashboard'); // Navigate to the user dashboard route
+        navigate('/user-dashboard');
       }
 
     } catch (error) {
@@ -45,6 +64,19 @@ const Signin = () => {
     }
   };
 
+  // Function to handle email input change
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setError(""); 
+  };
+
+  // Function to handle password input change
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError("");
+  };
+
+  // Render the component
   return (
     <div className="bg-gray-50 min-h-screen flex items-center justify-center mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
@@ -64,30 +96,19 @@ const Signin = () => {
               type="email"
               className="bg-white w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={isAdmin ? "admin@gmail.com" : email} // Prefill admin email if isAdmin is true
+              onChange={handleEmailChange}
             />
           </div>
 
-          <div className="col-span-6">
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="Password"
-                name="password"
-                placeholder="Password"
-                className="bg-white w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 px-4 py-1 text-gray-700"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FiEye /> : <FiEyeOff />}
-              </button>
-            </div>
+          <div className="relative">
+            <input
+              type="password"
+              className="bg-white w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
+              placeholder="Password"
+              value={isAdmin ? "admin123" : password} // Prefill admin password if isAdmin is true
+              onChange={handlePasswordChange}
+            />
           </div>
 
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}

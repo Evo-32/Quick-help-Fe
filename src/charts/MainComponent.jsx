@@ -1,6 +1,6 @@
 // src/charts/MainComponent.js
 import React from 'react';
-import Card from '../components/Card';
+import Card from '../Components/Card';
 import ChartsContainer from './ChartsContainer';
 
 const MainComponent = () => {

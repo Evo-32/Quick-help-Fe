@@ -59,7 +59,7 @@ const EditEmployeePage = () => {
     };
     try {
       await axios.put(`https://quickhelp-2.onrender.com/api/v1/employee/update/${employeeId}`, form);
-      navigate('/employee'); // Redirect to employee list or details page after successful update
+      navigate('/employees'); // Redirect to employee list or details page after successful update
     } catch (error) {
       console.error('Error updating employee:', error);
     }
