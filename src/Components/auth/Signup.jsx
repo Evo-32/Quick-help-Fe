@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import {Link} from "react-router-dom"
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
@@ -49,7 +50,7 @@ const Signup = () => {
 
       console.log(response.data);
 
-      navigate("/Confirmation");
+      navigate("/Confirm");
     } catch (error) {
       console.error(error);
       setError("An error occurred during signup. Please try again.");
@@ -146,7 +147,7 @@ const Signup = () => {
           </div>
 
           <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <a>
+            <Link to="/confirm">
               <button
                 type="submit"
                 className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
@@ -156,7 +157,7 @@ const Signup = () => {
               >
                 Create account
               </button>
-            </a>
+            </Link>
 
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?{" "}

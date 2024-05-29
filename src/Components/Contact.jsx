@@ -57,16 +57,19 @@ const Contact = () => {
                   htmlFor="country"
                   className="block text-gray-700 font-semibold mb-1"
                 >
-                  Country
+                  Location
                 </label>
                 <select
                   id="country"
                   name="country"
+                  placeholder=""
                   className="border border-gray-300 rounded-lg p-2 w-full"
                 >
-                  <option value="rwanda">Rwanda</option>
-                  <option value="europe">Europe</option>
-                  <option value="usa">USA</option>
+
+                  <option value="rwanda"></option>
+                  <option value="europe">Gasabo</option>
+                  <option value="usa">Nyarugenge</option>
+                  <option value="usa">Kicukiro</option>
                 </select>
               </div>
               <div className="mb-3">
