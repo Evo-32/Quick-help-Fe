@@ -18,10 +18,8 @@ import Signin from './Components/auth/Signin';
 import Signup from './Components/auth/Signup';
 import Reset from './Components/auth/Reset';
 import Confirmation from './Components/auth/Confirmation';
-import Loginas from './Components/auth/Loginas';
 import Booking from './Components/Booking';
 import Employee from './Components/Employee';
-
 const App = () => {
   return (
     <AuthProvider>
@@ -36,10 +34,8 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/setnew" element={<Reset />} />
             <Route path="/confirm" element={<Confirmation />} />
-            <Route path="/loginas" element={<Loginas />} />
             <Route path="/book" element={<Booking />} />
           </Route>
-
           <Route path="/" element={<AuthPages />}>
             <Route path="/dashboard" element={<DashBoardPage />} />
             <Route path="/employee" element={<EmployeesPage />} />
@@ -56,5 +52,4 @@ const App = () => {
     </AuthProvider>
   );
 };
-
 export default App;

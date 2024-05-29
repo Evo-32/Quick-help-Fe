@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
@@ -8,14 +10,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Clear previous errors
     setError("");
 
-    // Basic validation
     if (!userName.trim() || !email.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
@@ -31,23 +32,24 @@ const Signup = () => {
       return;
     }
 
-    // Form submission
     try {
-      const response = await axios.post('https://quickhelp-2.onrender.com/api/v1/auth/register', {
-        userName: userName,
-        email: email,
-        password: password
-      }, {
-        headers: {
-          "Content-Type": 'application/json',
+      const response = await axios.post(
+        "https://quickhelp-2.onrender.com/api/v1/auth/register",
+        {
+          userName: userName,
+          email: email,
+          password: password,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       console.log(response.data);
 
-      // Redirect to the confirm page after successful signup
-      navigate('/auth/otpinput');
-
+      navigate("/Confirmation");
     } catch (error) {
       console.error(error);
       setError("An error occurred during signup. Please try again.");
@@ -105,14 +107,23 @@ const Signup = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              id="Password"
-              name="password"
-              className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="Password"
+                name="password"
+                className="bg-gray-100 w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 px-4 py-1 text-gray-700"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FiEye /> : <FiEyeOff />}
+              </button>
+            </div>
           </div>
 
           {error && <p className="col-span-6 text-red-500 text-sm">{error}</p>}
@@ -135,12 +146,18 @@ const Signup = () => {
           </div>
 
           <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <button
-              type="submit"
-              className="inline-block rounded-md bg-blue-400 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-            >
-              Create an account
-            </button>
+            <a>
+              <button
+                type="submit"
+                className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
+                  error ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={error !== ""}
+              >
+                Create account
+              </button>
+            </a>
+
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?{" "}
               <a href="/signin" className="text-gray-700 underline">
