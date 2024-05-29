@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
-import Darkmode from "./Pages/Darkmode";
+// import Darkmode from "./Pages/Darkmode";
 
 const Menu = ({ isOpen, toggleMenu }) => {
   return (
@@ -33,7 +33,7 @@ const Menu = ({ isOpen, toggleMenu }) => {
       <li>
         <button
           className="bg-white rounded-full hover:bg-[#893470] block py-2 px-4 hover:text-white text-[#bf5084]"
-          onClick={toggleMenu} // Close menu when Sign in button is clicked
+          onClick={toggleMenu}
         >
           <a href="/signin" className="flex items-center py-2 px-4">
             Sign in
@@ -55,9 +55,8 @@ const Navbar = () => {
     <div>
       <div className="fixed bg-white drop-shadow-lg text-[#a5bbd3] top-0 left-0 w-full text-grey-500 p-4 flex justify-around items-center z-40">
         <div className="flex items-center">
-          <div className="text-4xl text-pink-600 font-semibold">Quick help</div>
+          <div className="text-4xl text-[#afa3d5] font-semibold">Quick help</div>
         </div>
-        {/* Full navigation bar for larger screens */}
         <ul className="hidden md:flex space-x-4">
           <li>
             <a href="/" className="flex items-center py-2 px-4">
@@ -81,14 +80,14 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/loginas"
-              className="flex items-center py-2  hover:text-pink-600 px-4"
+              href="/signin"
+              className="flex items-center py-2  hover:text-[#afa3d5] px-4"
             >
               Sign in
             </a>
           </li>
           <li className={`isDarkMode ? 'dark' : 'light' flex items-center`}>
-            <Darkmode />
+            {/* <Darkmode /> */}
           </li>
         </ul>
         <div className="md:hidden">
@@ -100,7 +99,6 @@ const Navbar = () => {
             <CiMenuFries />
           </button>
         </div>
-        {/* Mobile menu */}
         <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
       </div>
     </div>

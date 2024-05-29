@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
-const Signin = () => {
+const Reset = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleReset = (e) => {
     e.preventDefault();
@@ -57,19 +60,19 @@ const Signin = () => {
         return;
     }
 
-    // Proceed with sign-in logic (e.g., make API call)
+ 
     console.log('Signing in...');
 };
 
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setError(""); // Clear error when user starts typing in email field
+    setError(""); 
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setError(""); // Clear error when user starts typing in password field
+    setError("");
   };
 
   return (
@@ -97,21 +100,33 @@ const Signin = () => {
             />
           </div>
 
-          <div className="relative">
-            <input
-              type="password"
-              className="bg-white w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
-              placeholder="Password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
+          <div className="col-span-6">
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="Password"
+                name="password"
+                placeholder="Password"
+                className="bg-white w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 px-4 py-1 text-gray-700"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FiEye /> : <FiEyeOff />}
+              </button>
+            </div>
           </div>
+
 
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
           <a href="/setnew"><button
             type="submit"
-            className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
+            className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt-2 ${
               error ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={error !== ""}
@@ -124,4 +139,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Reset;
