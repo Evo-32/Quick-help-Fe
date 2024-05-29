@@ -1,7 +1,7 @@
 import React from 'react';
 import "../styles/content.css";
 import ContentHeader from './ContentHeader';
-import Card from '../components/Card';
+import Card from '../Components/Card';
 import ChartsContainer from '../charts/ChartsContainer';
 
 const Content = () => {
