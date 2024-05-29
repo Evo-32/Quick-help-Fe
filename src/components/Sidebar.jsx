@@ -5,10 +5,11 @@ import {
 
 } from "react-icons/bi";
 import "../styles/sidebar.css";
-import { MdOutlineContactPhone } from "react-icons/md";
+
 import { GiNetworkBars } from "react-icons/gi";
 import { MdOutlineWork } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
+import { TbBrandBooking } from "react-icons/tb";
 
 const Sidebar = () => {
   return (
@@ -28,14 +29,14 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to="/employee" className="item" activeclassname="active">
           <HiUserGroup className="icon" />
-          Workers
+          Employees
         </NavLink>
-        <NavLink to="/contactus"
+        <NavLink to="/bookings"
           className="item"
           activeclassname="active"
         >
-          <MdOutlineContactPhone className="icon" />
-          Contact Us
+          <TbBrandBooking className="icon" />
+          Bookings
         </NavLink>
         <button className="item logout">
   Logout

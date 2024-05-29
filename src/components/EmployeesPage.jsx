@@ -1,47 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { fetchEmployees, deleteEmployee } from '../api/employeeApi';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TableComponentEmployees from './TableComponentEmployees';
+import { fetchEmployees, deleteEmployee } from '../api/employeeApi';
 import '../styles/employee.css';
 
 const EmployeesPage = () => {
-  const location = useLocation();
   const [employees, setEmployees] = useState([]);
-  const [message, setMessage] = useState(location.state?.message || '');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getEmployees = async () => {
+    const loadEmployees = async () => {
       try {
         const employeesData = await fetchEmployees();
         setEmployees(employeesData);
       } catch (error) {
-        console.error('Error fetching employees:', error);
+        console.error('Error loading employees:', error);
       }
     };
-    getEmployees();
+    loadEmployees();
   }, []);
 
   const handleDelete = async (id) => {
     try {
       await deleteEmployee(id);
-      setEmployees(employees.filter(employee => employee.id !== id));
+      console.log('Deleted employee with ID:', id);
+      
+      if (Array.isArray(employees)) {
+        setEmployees(employees.filter((employee) => employee._id !== id));
+      } else {
+        console.error('Employees state is not an array:', employees);
+      }
+      
+      window.location.reload(); 
     } catch (error) {
       console.error('Error deleting employee:', error);
     }
   };
 
+  const handleAddEmployee = () => {
+    navigate('/employee/add');
+  };
+
   const handleEdit = (id) => {
-    // Navigate to edit page
+    navigate(`/employee/update/${id}`);
   };
 
   return (
-    <div className='content'>
-      {message && <div className="alert alert-success">{message}</div>}
-      <div className='content--header'>
+    <div className="content">
+      <div className="content--header">
         <h1 className="header--title">Employees</h1>
-        <Link to="/employees/add" className="add-employee-button">Add Employee</Link>
+        <button className="add-employee" onClick={handleAddEmployee}>
+          Add Employee
+        </button>
       </div>
-      <TableComponentEmployees employees={employees} onEdit={handleEdit} onDelete={handleDelete} />
+      <TableComponentEmployees handleDelete={handleDelete} handleEdit={handleEdit} employees={employees} />
     </div>
   );
 };

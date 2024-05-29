@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { addEmployee, updateEmployee, fetchEmployees } from '../api/employeeApi';
+import { addEmployee, updateEmployee, fetchEmployees, deleteEmployee } from '../api/employeeApi'; // Assuming you have a deleteEmployee function in your API
 import FormComponentEmployees from './FormComponentEmployees';
 import '../styles/employee.css';
 
@@ -21,6 +21,7 @@ const AddEditWorkerPage = () => {
     dateOfBirth: '',
   });
   const [employees, setEmployees] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const loadEmployees = async () => {
@@ -36,7 +37,7 @@ const AddEditWorkerPage = () => {
 
   useEffect(() => {
     if (id) {
-      const employeeToEdit = employees.find((e) => e.id === parseInt(id));
+      const employeeToEdit = employees.find((e) => e._id === id);
       if (employeeToEdit) setEmployee(employeeToEdit);
     }
   }, [id, employees]);
@@ -52,6 +53,7 @@ const AddEditWorkerPage = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       if (id) {
         await updateEmployee(id, employee);
@@ -62,19 +64,35 @@ const AddEditWorkerPage = () => {
     } catch (error) {
       console.error('Error saving employee:', error);
     }
+    setIsLoading(false);
+  };
+
+  const handleDelete = async () => {
+    setIsLoading(true);
+    try {
+      await deleteEmployee(id);
+      navigate('/employee');
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+    setIsLoading(false);
   };
 
   return (
-    <div className="content">
-      <div className="content--header">
-        <h1 className="header--title">{id ? 'Edit Employee' : 'Add Employee'}</h1>
-        <FormComponentEmployees
-          employee={employee}
-          handleChange={handleChange}
-          handleFileChange={handleFileChange}
-          handleSubmit={handleSave}
-        />
-      </div>
+    <div className="container">
+      <h1>{id ? 'Edit Employee' : 'Add Employee'}</h1>
+      <FormComponentEmployees
+        employee={employee}
+        onChange={handleChange}
+        onFileChange={handleFileChange}
+        onSave={handleSave}
+        isLoading={isLoading}
+      />
+      {id && (
+        <button className="delete-button" onClick={handleDelete} disabled={isLoading}>
+          {isLoading ? 'Deleting...' : 'Delete Employee'}
+        </button>
+      )}
     </div>
   );
 };

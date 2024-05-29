@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import FormComponent from '../tables/FormComponent';
-import { addJob, updateJob, fetchJobs } from '../api/jobsApi';
-
+import { addJob, updateJob } from '../api/jobsApi'; // Assuming there's an API function to fetch a single job
 
 const AddEditJobPage = () => {
-  const { id } = useParams();
+  const { _id } = useParams(); // Using _id instead of id
   const navigate = useNavigate();
   const [job, setJob] = useState({ picture: '', name: '', description: '' });
-  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const loadJobs = async () => {
-      const jobs = await fetchJobs();
-      setData(jobs);
+    const loadJob = async () => {
+      if (_id) {
+        try {
+          const jobData = await fetchJob(_id); 
+          setJob(jobData);
+        } catch (error) {
+          console.error('Error loading job:', error);
+        }
+      }
     };
-    loadJobs();
-  }, []);
-
-  useEffect(() => {
-    if (id) {
-      const jobToEdit = data.find((job) => job.id === parseInt(id));
-      if (jobToEdit) setJob(jobToEdit);
-    }
-  }, [id, data]);
+    loadJob();
+  }, [_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,25 +28,37 @@ const AddEditJobPage = () => {
   };
 
   const handleFileChange = (e) => {
-    setJob({ ...job, picture: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setJob({ ...job, picture: file });
+    }
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
-    if (id) {
-      await updateJob(id, job);
-    } else {
-      await addJob(job);
+    try {
+      if (_id) {
+        await updateJob(_id, job); // Using _id for existing job
+      } else {
+        await addJob(job);
+      }
+      navigate('/jobs', { state: { message: 'Job saved successfully!' } });
+    } catch (error) {
+      console.error('Error saving job:', error);
     }
-    navigate('/jobs');
   };
 
   return (
     <div className='content'>
-    <div className='content--header'>
-      <h1 className='header--title absolute top-12 left-30 '>{id ? 'Edit Job' : 'Add Job'}</h1>
-      <FormComponent job={job} handleChange={handleChange} handleFileChange={handleFileChange} handleSave={handleSave} />
+      <div className='content--header'>
+        <h1 className='header--title'>{_id ? 'Edit Job' : 'Add Job'}</h1> {/* Using _id */}
       </div>
+      <FormComponent 
+        job={job} 
+        handleChange={handleChange} 
+        handleFileChange={handleFileChange} 
+        handleSave={handleSave} 
+      />
     </div>
   );
 };

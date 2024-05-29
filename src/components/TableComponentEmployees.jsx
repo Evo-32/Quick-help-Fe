@@ -1,74 +1,120 @@
 import React, { useEffect, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
-import '../styles/employee.css';
 import axios from 'axios';
+import '../styles/employee.css';
 
-const TableComponentEmployees = ({ employees, onEdit, onDelete }) => {
-  const [fetch, setFetch] =useState([]);
-  const handleFetch = async()=>{
-    await axios({
-      method:'GET',
-      url:"https://quickhelp-2.onrender.com/api/v1/employee/get",
+const TableComponentEmployees = ({ handleEdit, handleDelete }) => {
+  const [employees, setEmployees] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
-    }).then((response)=>{
-      console.log(response.data.data);
-      setFetch(response.data.data)
-    }).catch((Error)=>{
-      console.log(Error);
-    })
-  }
-  useEffect(()=>{
-    handleFetch()
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get("https://quickhelp-2.onrender.com/api/v1/employee/get");
+        setEmployees(response.data.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEmployees();
   }, []);
-  
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(employees.length / itemsPerPage); i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`px-4 py-2 mx-1 ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
+  };
+
   return (
-    <div className="table-container">
-      <table className="employee-table">
-        <thead>
-          <tr>
-            <th>Profile Picture</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>ID Card</th>
-            <th>Job</th>
-            <th>Experience</th>
-            <th>Min Salary</th>
-            <th>Status</th>
-            <th>Date of Birth</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fetch.map((employee) => (
-            <tr key={employee.id}>
-              <td>
-                <img src={`${employee.profilePicture}`} alt={`${employee.firstName} ${employee.lastName}`} className="profile-picture" />
-              </td>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.email}</td>
-              <td>{employee.phone}</td>
-              <td>{employee.idCard}</td>
-              <td>{employee.JobName}</td>
-              <td>{employee.experience}</td>
-              <td>{employee.min_salary}</td>
-              <td>{employee.status}</td>
-              <td>{employee.dateOfBirth}</td>
-              <td className="action-buttons">
-                <button className="action-button edit-button" onClick={() => onEdit(employee.id)}>
-                  <FaEdit />
-                </button>
-                <button className="action-button delete-button" onClick={() => onDelete(employee.id)}>
-                  <MdDelete />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="table-wrapper">
+      <div className="table-container">
+        {isLoading ? (
+          <div className="loading-container">
+            <p className="loading-text">Loading...</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200 table-fixed">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Picture</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Card</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Min Salary</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date of Birth</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {currentItems.map((employee) => (
+                      <tr key={employee._id}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <img src={employee.profilePicture.url} alt={`${employee.firstName} ${employee.lastName}`} className="profile-picture" />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.firstName}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.lastName}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.email}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.phone}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.idCard}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.JobName}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.experience}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.min_salary}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.status}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{employee.dateOfBirth}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div className="flex gap-5">
+                            <button className="p-2" onClick={() => handleEdit(employee._id)}>
+                              <FaEdit />
+                            </button>
+                            <button className="p-2" onClick={() => handleDelete(employee._id)}>
+                              <MdDelete />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="pagination py-2">
+                  {renderPageNumbers()}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

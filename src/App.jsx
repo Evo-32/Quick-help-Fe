@@ -4,10 +4,12 @@ import EmployeesPage from './components/EmployeesPage';
 import JobsPage from './components/JobsPage'; 
 import "./App.css";
 import DashBoardPage from './components/DashBoardPage';
-import ContactUsPage from './components/ContactUsPage';
+import BookingsPage from './components/BookingsPage';
 import AuthPages from './components/AuthPages';
 import AddEditJobPage from './components/AddEditJobPage';
 import FormComponentEmployees from './components/FormComponentEmployees';
+import EditEmployeePage from './components/EditEmployeePage';
+import EditJobPage from './components/EditJobPage';
 
 const App = () => {
   return (
@@ -18,11 +20,12 @@ const App = () => {
             <Route path="/" element={<AuthPages />}>
               <Route index element={<DashBoardPage />} />
               <Route path="/employee" element={<EmployeesPage />} />
-              <Route path="/employees/add" element={<FormComponentEmployees/>} /> // Route for adding a worker
+              <Route path="/employee/add" element={<FormComponentEmployees />} />
+              <Route path="/employee/update/:id" element={<EditEmployeePage />} />
               <Route path="/jobs" element={<JobsPage />} />
-              <Route path="/contactus" element={<ContactUsPage />} />
               <Route path="/jobs/add" element={<AddEditJobPage />} />
-              <Route path="/jobs/edit/:index" element={<AddEditJobPage />} />
+              <Route path="/jobs/updateJob/:id" element={<EditJobPage />} />
+              <Route path="/bookings" element={<BookingsPage />} />
             </Route>
           </Routes>
         </div>

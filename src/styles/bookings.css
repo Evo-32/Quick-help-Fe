@@ -1,3 +1,4 @@
+/* Common styles for the content */
 .content {
   width: 75%;
 }
@@ -13,27 +14,7 @@
   color: #526d82;
 }
 
-/* Additional styles for Add Job button */
-.add-job {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  font-size: 1.1rem;
-  text-decoration: none;
-  font-weight: 400;
-  padding: 10px;
-  border-radius: 10px;
-  transition: 0.3s ease-in-out;
-  color: #dde6ed;
-  background: #526d82;
-}
-
-.add-job:hover {
-  background: #27374d;
-  color: #dde6ed !important;
-}
-
+/* Table container styles */
 .table-container {
   overflow-x: auto;
 }
@@ -50,8 +31,8 @@
   word-break: break-word;
 }
 
-/* Styles for the job form */
-.job-form {
+/* Styles for the booking form */
+.booking-form {
   width: 50%; /* Adjusted form width */
   margin: 50px auto; /* Centered the form vertically and horizontally */
   padding: 20px;
@@ -94,9 +75,12 @@
 }
 
 .save-button:hover {
-  background-color: #27374d;
+  background-color: #1d2a3a;
 }
-.loading-container {
+
+/* Loading and success containers */
+.loading-container,
+.success-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,25 +91,19 @@
   font-size: 24px;
   color: #333; /* Adjust the color as needed */
 }
-.sucess-container,
-.success-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
 
-.sucess-text,
 .success-text {
   font-size: 24px;
   color: #22c55e;
 }
 
+/* Profile picture style */
 .profile-picture {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+
 
 /* Pagination styles */
 .pagination {
@@ -161,6 +139,3 @@
   color: #333;
   border-color: #e5e7eb;
 }
-
-
-

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { addEmployee } from '../api/employeeApi';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addEmployee, fetchEmployee, updateEmployee } from '../api/employeeApi';
+import '../styles/employee.css';
 
 const FormComponentEmployees = () => {
+  const { id } = useParams(); // Get the employee ID from the URL if it's an edit operation
   const navigate = useNavigate();
   const [employee, setEmployee] = useState({
     profilePicture: '',
@@ -11,11 +13,27 @@ const FormComponentEmployees = () => {
     email: '',
     phone: '',
     idCard: '',
-    jobName: 'Housemaid',
+    JobName: 'Housemaid',
     experience: '',
     min_salary: '',
     status: 'Retired',
+    dateOfBirth: '',
   });
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (id) {
+      const fetchEmployeeData = async () => {
+        try {
+          const employeeData = await fetchEmployee(id);
+          setEmployee(employeeData); // Populate the state with fetched data for editing
+        } catch (error) {
+          console.error('Error fetching employee:', error);
+        }
+      };
+      fetchEmployeeData();
+    }
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,19 +50,29 @@ const FormComponentEmployees = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Submitting employee data:', employee);
-      await addEmployee(employee);
-      navigate('/employee', { state: { message: 'Employee added successfully!' } });
+      const formData = new FormData();
+      for (const key in employee) {
+        formData.append(key, employee[key]);
+      }
+      console.log('Submitting employee data:', formData); // Check the FormData being sent
+      if (id) {
+        await updateEmployee(id, formData); // Send the FormData for updating
+      } else {
+        await addEmployee(formData); // Send the FormData for adding
+      }
+      navigate('/employee', { state: { message: 'Employee saved successfully!' } });
     } catch (error) {
-      console.error('Error adding employee:', error.response ? error.response.data : error.message);
+      setError(error.response ? error.response.data : error.message);
+      console.error('Error saving employee:', error);
     }
   };
 
   return (
     <div className='content'>
       <div className='content--header'>
-        <h1 className="header--title">Add Employee</h1>
+        <h1 className="header--title">{id ? 'Edit Employee' : 'Add Employee'}</h1>
       </div>
+      {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit} className="employee-form">
         <div className="form-group">
           <label htmlFor="profilePicture">Profile Picture</label>
@@ -54,7 +82,7 @@ const FormComponentEmployees = () => {
             name="profilePicture" 
             onChange={handleFileChange} 
             accept="image/*"
-            required 
+            required={!id} // Make profile picture required only for adding
           />
         </div>
         <div className="form-group">
@@ -93,7 +121,7 @@ const FormComponentEmployees = () => {
         <div className="form-group">
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <input 
-            type="dateOfBirth" 
+            type="date" 
             id="dateOfBirth" 
             name="dateOfBirth" 
             value={employee.dateOfBirth} 
@@ -148,7 +176,7 @@ const FormComponentEmployees = () => {
         <div className="form-group">
           <label htmlFor="min_salary">Min Salary</label>
           <input 
-            type="text" 
+            type="number" 
             id="min_salary" 
             name="min_salary" 
             value={employee.min_salary} 
@@ -165,7 +193,7 @@ const FormComponentEmployees = () => {
             onChange={handleChange} 
             required 
           >
-            <option value="In Progress">In Progress</option>
+            <option value="In Progress">Pending</option>
             <option value="Retired">Retired</option>
             <option value="Hired">Hired</option>
           </select>

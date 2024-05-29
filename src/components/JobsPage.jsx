@@ -20,21 +20,30 @@ const JobsPage = () => {
     loadJobs();
   }, []);
 
+ 
   const handleDelete = async (id) => {
     try {
       await deleteJob(id);
-      setData(data.filter((jobs) => jobs.id !== id));
+      console.log('Deleted job with ID:', id);
+      console.log('Current data state:', data); 
+      if (Array.isArray(data)) {
+        setData(data.filter((job) => job._id !== id));
+      } else {
+        console.error('Data state is not an array:', data);
+      }
+      window.location.reload(); 
     } catch (error) {
       console.error('Error deleting job:', error);
     }
   };
+  
 
   const handleAddJob = () => {
     navigate('/jobs/add');
   };
 
   const handleEdit = (id) => {
-    navigate(`/jobs/edit/${id}`);
+    navigate(`/jobs/updateJob/${id}`);
   };
 
   return (
@@ -45,7 +54,7 @@ const JobsPage = () => {
           Add Job
         </button>
       </div>
-      <TableComponent data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <TableComponent handleDelete={handleDelete} handleEdit={handleEdit} />
     </div>
   );
 };
