@@ -60,7 +60,7 @@ const FormComponentEmployees = () => {
       } else {
         await addEmployee(formData); // Send the FormData for adding
       }
-      navigate('/employee', { state: { message: 'Employee saved successfully!' } });
+      navigate('/employees', { state: { message: 'Employee saved successfully!' } });
     } catch (error) {
       setError(error.response ? error.response.data : error.message);
       console.error('Error saving employee:', error);

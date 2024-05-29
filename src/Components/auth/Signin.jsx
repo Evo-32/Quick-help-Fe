@@ -1,3 +1,4 @@
+// Components/auth/Signin.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -47,7 +48,7 @@ const Signin = () => {
 
       const { user } = response.data; // Adjust this according to your actual response structure
 
-      if (user.role === 'admin') {
+      if (user.Role === 'Admin') {
         login(user);
         navigate('/dashboard');
       } else {
@@ -84,7 +85,6 @@ const Signin = () => {
         </h1>
         <form
           onSubmit={handleSignin}
-          action="#"
           className="bg-white mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
           <p className="text-center text-pink-500 text-lg font-medium">
@@ -96,7 +96,7 @@ const Signin = () => {
               type="email"
               className="bg-white w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
               placeholder="Email"
-              value={isAdmin ? "admin@example.com" : email} // Prefill admin email if isAdmin is true
+              value={isAdmin ? "admin@gmail.com" : email} // Prefill admin email if isAdmin is true
               onChange={handleEmailChange}
             />
           </div>
@@ -115,7 +115,7 @@ const Signin = () => {
 
           <button
             type="submit"
-            className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
+            className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt-2 ${
               error ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={error !== ""}

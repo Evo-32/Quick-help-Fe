@@ -84,7 +84,7 @@ const Card = () => {
     {
       title: 'Employees',
       icon: <HiUserGroup />,
-      path: '/employee',
+      path: '/employees',
       totalCount: totalEmployeesCount,
     },
     {
