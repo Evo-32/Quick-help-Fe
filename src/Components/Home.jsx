@@ -94,7 +94,7 @@ const Home = () => {
           >
             <img
               className="rounded-lg shadow-lg border h-100 lg:h-120 w-auto max-w-full object-cover"
-              src="https://i.pinimg.com/736x/58/6/9c/58659c2359b148858b21c8f28aee6b79.jpg"
+              src="https://i.pinimg.com/564x/d8/39/66/d83966edf99f1d7e5322503ad4ff57f6.jpg"
               alt="Example Image" 
             />
           </motion.div>
