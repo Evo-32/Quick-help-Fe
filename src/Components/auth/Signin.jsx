@@ -49,13 +49,10 @@ const Signin = () => {
       console.log("API Response:", response.data); // Log API response
 
       const { user, token } = response.data;
-      console.log("Token:", token); // Log token
+      console.log("Tokendsxfcgvhbjnkmljhgfvtdrszdrxfctgyuhokpl:", token); // Log token
     
       localStorage.setItem("token", token);
-    
-      console.log("user", user); // Adjust this according to your actual response structure
-      // localStorage.setItem("token",response.data.token )
-      // localStorage.setItem("token", JSON.stringify(response.data.Role)  )
+      localStorage.setItem("user", JSON.stringify(response.data.Role))
 
 
       if (user.Role === 'Admin') {

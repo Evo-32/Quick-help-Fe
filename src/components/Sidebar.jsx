@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BiBookAlt } from "react-icons/bi";
 import "../styles/sidebar.css";
@@ -13,18 +13,24 @@ const Sidebar = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    axios.get("https://quickhelp-2.onrender.com/api/v1/auth/logout")
-      .then((res) => {
-        console.log(res.data);
-        console.log("Logged out successfully");
-        logout(); // Clear client-side authentication state
-        navigate('/'); // Redirect to home page
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  let token = localStorage.getItem("token");
+  let user = localStorage.getItem("user");
+  console.log(token, "token")
+  
+  const handleDelete = ()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate('/')
+    
+    }
+    
+  
+  useEffect(()=>{
+  if(!token){
+    navigate('/')
+  }
+})
+
 
   return (
     <div className="menu">
@@ -49,7 +55,7 @@ const Sidebar = () => {
           <TbBrandBooking className="icon" />
           Bookings
         </NavLink>
-        <button className="item logout" onClick={handleLogout}>
+        <button className="item logout" onClick={handleDelete}>
           Logout
         </button>
       </div>
