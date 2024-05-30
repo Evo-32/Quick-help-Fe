@@ -22,6 +22,7 @@ import Booking from './Components/Booking';
 import Employee from './Components/Employee';
 import DashboardLayout from './Components/DashboardLayout';
 import './App.css';
+import Profile from './Components/Profile';
 
 const App = () => {
   return (
@@ -29,16 +30,18 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="employee" element={<Employee />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="signin" element={<Signin />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="setnew" element={<Reset />} />
-            <Route path="confirm" element={<Confirmation />} />
-            <Route path="book" element={<Booking />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/employee" element={<Employee />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/setnew" element={<Reset />} />
+            <Route path="/confirm" element={<Confirmation />} />
+            <Route path="/book" element={<Booking />} />
+            <Route path='/profile' element={<Profile/>} />
           </Route>
+
           <Route path="/" element={<AuthPages />}>
             <Route element={<DashboardLayout />}>
               <Route path="dashboard" element={<DashBoardPage />} />

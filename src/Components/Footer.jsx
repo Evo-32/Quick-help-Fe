@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="relative mx-auto max-w-screen-xl px-4 py-16 h-50 sm:px-6 lg:px-8 lg:pt-24">
           <div className="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8">
             <a
-              className="inline-block rounded-full bg-pink-600 p-2 text-white shadow transition hover:bg-pink-400 sm:p-3 lg:p-4"
+              className="inline-block rounded-full bg-[#114a6e] p-2 text-white shadow transition sm:p-3 lg:p-4"
               href="/"
             >
               <span className="sr-only">Back to top</span>
@@ -36,7 +36,7 @@ const Footer = () => {
             <div>
               <div className="flex justify-center lg:justify-start">
                 <FcHome className="text-4xl" />
-                <p className="text-pink-600 text-2xl p-2">
+                <p className="text-[#114a6e] text-2xl p-2">
                   Quick help at your door step
                 </p>
               </div>

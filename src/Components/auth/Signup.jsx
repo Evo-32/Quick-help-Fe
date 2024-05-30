@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
@@ -34,7 +35,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "https://quickhelp-2.onrender.com/api/v1/auth/register",
+        "https://quickhelp-2.onrender.com/api/v1/auth/register/",
         {
           userName: userName,
           email: email,
@@ -49,7 +50,7 @@ const Signup = () => {
 
       console.log(response.data);
 
-      navigate("/Confirmation");
+      navigate("/Confirm");
     } catch (error) {
       console.error(error);
       setError("An error occurred during signup. Please try again.");
@@ -146,17 +147,16 @@ const Signup = () => {
           </div>
 
           <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <a>
+
               <button
                 type="submit"
-                className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt ${
+                className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt-2 ${
                   error ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 disabled={error !== ""}
               >
                 Create account
               </button>
-            </a>
 
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?{" "}
