@@ -147,42 +147,21 @@ const Signup = () => {
           </div>
 
           <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-
-              <button
-                type="submit"
-                className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt-2 ${
-                  error ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                disabled={error !== ""}
-              >
-                Create account
-              </button>
+            <button
+              type="submit"
+              className={`block w-full rounded-lg bg-blue-300 px-5 py-3 text-sm font-medium text-white mt-2 ${
+                error ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={error !== ""}
+            >
+              Create account
+            </button>
 
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?{" "}
-              <a href="/
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              " className="text-gray-700 underline">
+              <a href="/ " className="text-gray-700 underline">
                 Log in
               </a>
-              .
             </p>
           </div>
         </form>
