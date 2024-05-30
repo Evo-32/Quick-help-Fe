@@ -68,46 +68,6 @@ const Home = () => {
               experience convenience at your doorstep. Quick service, sparkling
               results.
             </p>
-            <div className="flex mt-4 justify-center sm:justify-start text-xl">
-              <ul className="m-5 flex flex-wrap justify-center gap-6 md:gap-8 text-3xl">
-                <li>
-                  <a
-                    className="text-[#7ba7
-                      b0] transition hover:text-blue-600/75"
-                    href="https://facebook.com"
-                  >
-                    <FaFacebook size={40} />
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-blue-400 transition hover:text-blue-400/75"
-                    href="https://twitter.com"
-                  >
-                    <FaTwitter size={40} />
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-red-600 transition hover:text-red-600/75"
-                    href="mailto:your-email@example.com"
-                  >
-                    <MdEmail size={40} />
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-pink-600 transition hover:text-pink-600/75"
-                    href="https://instagram.com"
-                  >
-                    <FaInstagram size={40} />
-                  </a>
-                </li>
-              </ul>
-            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
