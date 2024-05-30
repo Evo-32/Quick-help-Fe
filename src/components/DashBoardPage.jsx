@@ -1,15 +1,15 @@
-import React from 'react'
-import Content from './Content'
-import "../styles/content.css"
-import '../styles/sidebar.css'
+import React from 'react';
+import "../styles/content.css";
+
+import Content from "./Content";
+
 
 
 const DashBoardPage = () => {
   return (
    <>
-        <Content/>
-      
-     
+ 
+      <Content></Content>
    </>
   )
 }

@@ -1,16 +1,30 @@
-.dashboard{
+/* App.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+/* 
+.dashboard {
   display: flex;
   gap: 20px;
   height: 100%;
   width: 100%;
+  flex-direction: column; 
 }
-.dashboard--content{
-  background: #fff;
+
+.dashboard--content {
+  background: #ffffff;
   flex: 1;
   border-radius: 20px;
   padding: 2rem;
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
-  height: 99vh;
-}
+  height: 99vh !important;
+
+} */

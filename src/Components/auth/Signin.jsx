@@ -46,7 +46,17 @@ const Signin = () => {
         },
       });
 
-      const { user } = response.data; // Adjust this according to your actual response structure
+      console.log("API Response:", response.data); // Log API response
+
+      const { user, token } = response.data;
+      console.log("Token:", token); // Log token
+    
+      localStorage.setItem("token", token);
+    
+      console.log("user", user); // Adjust this according to your actual response structure
+      // localStorage.setItem("token",response.data.token )
+      // localStorage.setItem("token", JSON.stringify(response.data.Role)  )
+
 
       if (user.Role === 'Admin') {
         login(user);
@@ -55,7 +65,7 @@ const Signin = () => {
         // For regular users, you can handle sign in differently or just proceed
         // with the regular sign in process
         login(user);
-        navigate('/user-dashboard');
+        navigate('/');
       }
 
     } catch (error) {
