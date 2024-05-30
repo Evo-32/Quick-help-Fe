@@ -11,7 +11,7 @@ const Content = () => {
       <div className="cards-wrapper"> {/* Wrap the cards in a div */}
         <Card />
       </div>
-      <ChartsContainer /> {/* Add the ChartsContainer component below the Card component */}
+      <ChartsContainer /> 
     </div>
   );
 }

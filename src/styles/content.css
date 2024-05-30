@@ -1,7 +1,13 @@
+
+/* content.css */
 .content {
-  width: 75%;
-  height: 100% !important;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
+
 
 .content--header {
   display: flex;
@@ -99,7 +105,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-top: 0;
 }
 
 .charts-container {
