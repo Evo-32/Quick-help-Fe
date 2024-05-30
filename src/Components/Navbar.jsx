@@ -55,7 +55,7 @@ const Navbar = () => {
     <div>
       <div className="fixed bg-white drop-shadow-lg text-[#a5bbd3] top-0 left-0 w-full text-grey-500 p-4 flex justify-around items-center z-40">
         <div className="flex items-center">
-          <div className="text-4xl text-[#afa3d5] font-semibold">Quick help</div>
+        <div class="text-5xl text-[#0b1957] font-semibold animate-bounce">Q~H</div>
         </div>
         <ul className="hidden md:flex space-x-4">
           <li>

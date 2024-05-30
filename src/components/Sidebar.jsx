@@ -19,7 +19,7 @@ const Sidebar = () => {
         <h2>QuickHelp</h2>
       </div>
       <div className="menu--list">
-        <NavLink to="/" className="item" activeclassname="active">
+        <NavLink to="/dashboard" className="item" activeclassname="active">
           <GiNetworkBars className="icon" />
           Dashboard
         </NavLink>
@@ -27,7 +27,7 @@ const Sidebar = () => {
           <MdOutlineWork className="icon" />
           Jobs
         </NavLink>
-        <NavLink to="/employee" className="item" activeclassname="active">
+        <NavLink to="/employees" className="item" activeclassname="active">
           <HiUserGroup className="icon" />
           Employees
         </NavLink>

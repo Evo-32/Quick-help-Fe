@@ -34,7 +34,7 @@ const TypingAnimation = ({ words }) => {
     }
   }
 
-  return <span className="text-[#afa3d5]">{currentWord}</span>;
+  return <span className='text-[#5884e7]'>{currentWord}</span>;
 };
 
 const Home = () => {
@@ -46,7 +46,7 @@ const Home = () => {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className="min-h-screen flex flex-col items-center justify-center p-5 text-gray-700"
+        className="min-h-screen flex flex-col items-center justify-center p-5"
       >
         <div className="relative mt-5 py-16 lg:py-0 lg:flex lg:h-screen lg:items-center lg:justify-between max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <motion.div
@@ -55,12 +55,11 @@ const Home = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="home-info text-center md:text-left flex flex-col justify-center lg:pr-12"
           >
-            <h3 className="hello text-4xl font-bold mb-4 text-black">
-              Find the Best Freelancer
-              <span className="name text-skin-color"></span>
+            <h3 className="hello text-4xl font-bold mb-4">
+              Find the Best Freelancer 
             </h3>
-            <h3 className="my-profession text-4xl font-bold mb-4 text-black">
-              with <TypingAnimation words={words} />
+            <h3 className="my-profession text-4xl font-bold mb-4 ">
+              with <TypingAnimation  words={words} />
             </h3>
             <p className="text-gray-700 text-xl">
               Discover reliable home assistance with Quick help! Hire skilled
@@ -69,11 +68,10 @@ const Home = () => {
               results.
             </p>
             <div className="flex mt-4 justify-center sm:justify-start text-xl">
-              <ul className="m-5 flex flex-wrap justify-center gap-6 md:gap-8 text-3xl">
+              <ul className="m-10 flex flex-wrap justify-center gap-6 md:gap-8 text-3xl">
                 <li>
                   <a
-                    className="text-[#7ba7
-                      b0] transition hover:text-blue-600/75"
+                    className="text-[#a5bbd3] transition hover:text-blue-600/75"
                     href="https://facebook.com"
                   >
                     <FaFacebook size={40} />
@@ -82,7 +80,7 @@ const Home = () => {
 
                 <li>
                   <a
-                    className="text-blue-400 transition hover:text-blue-400/75"
+                    className="text-[#a5bbd3] transition hover:text-blue-400/75"
                     href="https://twitter.com"
                   >
                     <FaTwitter size={40} />
@@ -91,7 +89,7 @@ const Home = () => {
 
                 <li>
                   <a
-                    className="text-red-600 transition hover:text-red-600/75"
+                    className="text-[#a5bbd3] transition hover:text-red-600/75"
                     href="mailto:your-email@example.com"
                   >
                     <MdEmail size={40} />
@@ -100,7 +98,7 @@ const Home = () => {
 
                 <li>
                   <a
-                    className="text-pink-600 transition hover:text-pink-600/75"
+                    className="text-[#a5bbd3] transition hover:text-pink-600/75"
                     href="https://instagram.com"
                   >
                     <FaInstagram size={40} />
