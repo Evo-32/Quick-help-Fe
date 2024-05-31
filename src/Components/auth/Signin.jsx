@@ -10,9 +10,8 @@ const Signin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
-  const isAdmin = false; // Change this to true if you want to pre-fill admin credentials
+  const isAdmin = false;
 
-  // Function to handle sign in
   const handleSignin = async (e) => {
     e.preventDefault();
 
@@ -46,10 +45,10 @@ const Signin = () => {
         },
       });
 
-      console.log("API Response:", response.data); // Log API response
+      console.log("API Response:", response.data); 
 
       const { user, token } = response.data;
-      console.log("Tokendsxfcgvhbjnkmljhgfvtdrszdrxfctgyuhokpl:", token); // Log token
+      console.log("Tokendsxfcgvhbjnkmljhgfvtdrszdrxfctgyuhokpl:", token); 
     
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(response.data.Role))
@@ -59,8 +58,7 @@ const Signin = () => {
         login(user);
         navigate('/dashboard');
       } else {
-        // For regular users, you can handle sign in differently or just proceed
-        // with the regular sign in process
+
         login(user);
         navigate('/');
       }
@@ -71,19 +69,17 @@ const Signin = () => {
     }
   };
 
-  // Function to handle email input change
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setError(""); 
   };
 
-  // Function to handle password input change
+  
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setError("");
   };
 
-  // Render the component
   return (
     <div className="bg-gray-50 min-h-screen flex items-center justify-center mx-auto max-w-full-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
@@ -103,7 +99,7 @@ const Signin = () => {
               type="email"
               className="bg-white w-full rounded-lg border-gray-200 p-4 text-black-400 pe-12 text-sm shadow-sm"
               placeholder="Email"
-              value={isAdmin ? "admin@gmail.com" : email} // Prefill admin email if isAdmin is true
+              value={isAdmin ? "admin@gmail.com" : email} 
               onChange={handleEmailChange}
             />
           </div>
@@ -113,7 +109,7 @@ const Signin = () => {
               type="password"
               className="bg-white w-full rounded-lg border-gray-200 p-4 pe-12 text-sm text-blue-400 shadow-sm"
               placeholder="Password"
-              value={isAdmin ? "admin123" : password} // Prefill admin password if isAdmin is true
+              value={isAdmin ? "admin123" : password} 
               onChange={handlePasswordChange}
             />
           </div>

@@ -12,7 +12,7 @@ const Contact = () => {
       <div className=" min-h-screen max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 mt-7">
         <div className="relative mx-auto max-w-full px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-4">
           <div className="home-info text-center md:text-left flex-col">
-            <h3 className="hello text-4xl font-bold mb-4 text-yellow-400">
+            <h3 className="hello text-4xl font-bold mb-4 text-[#0b1957]">
               Find talent your way
             </h3>
             <p className="text-gray-700 mb-6">
@@ -57,16 +57,19 @@ const Contact = () => {
                   htmlFor="country"
                   className="block text-gray-700 font-semibold mb-1"
                 >
-                  Country
+                  Location
                 </label>
                 <select
                   id="country"
                   name="country"
+                  placeholder=""
                   className="border border-gray-300 rounded-lg p-2 w-full"
                 >
-                  <option value="rwanda">Rwanda</option>
-                  <option value="europe">Europe</option>
-                  <option value="usa">USA</option>
+
+                  <option value="rwanda"></option>
+                  <option value="europe">Gasabo</option>
+                  <option value="usa">Nyarugenge</option>
+                  <option value="usa">Kicukiro</option>
                 </select>
               </div>
               <div className="mb-3">
@@ -83,7 +86,7 @@ const Contact = () => {
                   placeholder="Write something.."
                 ></textarea>
               </div>
-              <button type ="submit" className="bg-yellow-400 rounded-full hover:bg-yellow-300 hover:text-white text-white sm:px-6 mt-4">
+              <button type ="submit" className="bg-[#0b1957] rounded-full hover:text-white text-white sm:px-6 mt-4">
                   Contact us
                   <MdArrowOutward className="ml-2" />
               </button>
@@ -94,22 +97,22 @@ const Contact = () => {
             <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:h-screen lg:grid-cols-2relative mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-0 lg:flex  lg:items-center lg:justify-between">
                 <div className="relative flex items-center">
-                  <div className="absolute bottom-0 left-0 z-10 bg-yellow-500 p-4 rounded-lg shadow-lg">
+                  <div className="absolute bottom-0 left-0 z-10 bg-[#0b1957] text-gray-300 p-4 rounded-lg shadow-lg">
                     <ul>
                       <li className="flex items-center">
-                        <MdCheck className="bg-white border rounded-full mr-2" />
+                        <MdCheck className="bg-[#0b1957] border rounded-full mr-2" />
                         The best for every budget
                       </li>
                       <li className="flex items-center">
-                        <MdCheck className="bg-white border rounded-full mr-2" />
+                        <MdCheck className="bg-[#0b1957] border rounded-full mr-2" />
                         Quality work done quickly
                       </li>
                       <li className="flex items-center">
-                        <MdCheck className="bg-white border rounded-full mr-2" />
+                        <MdCheck className="bg-[#0b1957] border rounded-full mr-2" />
                         Protected payments
                       </li>
                       <li className="flex items-center">
-                        <MdCheck className="bg-white border rounded-full mr-2" />
+                        <MdCheck className="bg-[#0b1957] border rounded-full mr-2" />
                         24/7 support
                       </li>
                     </ul>
@@ -117,7 +120,7 @@ const Contact = () => {
 
                   <img
                     className="rounded-lg shadow-lg border h-100 lg:h-120 w-auto max-w-full object-cover mt-10"
-                    src="https://i.pinimg.com/564x/89/2b/d6/892bd624e1196ee8aa33d99133aac072.jpg"
+                    src="https://i.pinimg.com/564x/97/18/79/9718795e20700f295b35497a624a768a.jpg"
                     alt="Example Image"
                   />
                 </div>
