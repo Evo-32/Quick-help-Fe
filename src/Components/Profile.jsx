@@ -1,7 +1,7 @@
+// Components/Profile.js
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 
 const Profile = () => {
   const [profilePicture, setProfilePicture] = useState("");
@@ -15,17 +15,20 @@ const Profile = () => {
   const [minSalary, setMinSalary] = useState("");
   const [status, setStatus] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [data, setData] = useState([]);
-  const { id: employeeId } = useParams();
   const navigate = useNavigate();
+  const employeeId = localStorage.getItem("userId");
 
   const handleFetchById = async () => {
     try {
       const response = await axios.get(
-        `https://quickhelp-2.onrender.com/api/v1/employee/getById/${employeeId}`
+        `https://quickhelp-2.onrender.com/api/v1/employee/getById/${employeeId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       );
       const employeeData = response.data.data;
-      setData(employeeData);
       setFirstName(employeeData.firstName);
       setLastName(employeeData.lastName);
       setEmail(employeeData.email);
@@ -38,12 +41,17 @@ const Profile = () => {
       setDateOfBirth(employeeData.dateOfBirth);
     } catch (error) {
       console.error(error);
+      navigate('/signin'); // Redirect to signin if there is an error
     }
   };
 
   useEffect(() => {
-    handleFetchById();
-  }, []);
+    if (!employeeId) {
+      navigate('/signin'); // Redirect to signin if user is not authenticated
+    } else {
+      handleFetchById();
+    }
+  }, [employeeId, navigate]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -62,9 +70,14 @@ const Profile = () => {
     try {
       await axios.put(
         `https://quickhelp-2.onrender.com/api/v1/employee/update/${employeeId}`,
-        form
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       );
-      navigate("/employees");
+      navigate("/profile");
     } catch (error) {
       console.error("Error updating employee:", error);
     }
@@ -117,7 +130,7 @@ const Profile = () => {
                 name="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
               />
             </div>
             <div className="flex-1">
@@ -133,159 +146,145 @@ const Profile = () => {
                 name="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="form-group mb-4 flex space-x-2">
-            <div className="flex-1">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div className="flex-1">
-              <label
-                htmlFor="dateOfBirth"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Date Of Birth:
-              </label>
-              <input
-                type="date"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                value={dateOfBirth}
-                onChange={(e) => setDateOfBirth(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="form-group mb-4 flex space-x-2">
-            <div className="flex-1">
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Phone:
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div className="flex-1">
-              <label
-                htmlFor="idCard"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                ID Card:
-              </label>
-              <input
-                type="text"
-                id="idCard"
-                name="idCard"
-                value={idCard}
-                onChange={(e) => setIdCard(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="form-group mb-4 flex space-x-2">
-            <div className="flex-1">
-              <label
-                htmlFor="JobName"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Job Name:
-              </label>
-              <input
-                type="text"
-                id="JobName"
-                name="JobName"
-                value={JobName}
-                onChange={(e) => setJobName(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div className="flex-1">
-              <label
-                htmlFor="experience"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Experience:
-              </label>
-              <input
-                type="text"
-                id="experience"
-                name="experience"
-                value={experience}
-                onChange={(e) => setExperience(e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-lg"
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
               />
             </div>
           </div>
           <div className="form-group mb-4">
             <label
-              htmlFor="min_salary"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Min Salary:
+              Email:
             </label>
             <input
-              type="number"
-              id="min_salary"
-              name="min_salary"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Phone:
+            </label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="idCard"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              ID Card:
+            </label>
+            <input
+              type="text"
+              id="idCard"
+              name="idCard"
+              value={idCard}
+              onChange={(e) => setIdCard(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="JobName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Job Name:
+            </label>
+            <input
+              type="text"
+              id="JobName"
+              name="JobName"
+              value={JobName}
+              onChange={(e) => setJobName(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="experience"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Experience:
+            </label>
+            <input
+              type="text"
+              id="experience"
+              name="experience"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="minSalary"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Minimum Salary:
+            </label>
+            <input
+              type="text"
+              id="minSalary"
+              name="minSalary"
               value={minSalary}
               onChange={(e) => setMinSalary(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-lg"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
             />
+          </div>
+          <div className="form-group mb-4">
             <label
               htmlFor="status"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
               Status:
             </label>
-            <select
+            <input
+              type="text"
               id="status"
               name="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-lg"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label
+              htmlFor="dateOfBirth"
+              className="block text-sm font-medium text-gray-700 mb-2"
             >
-              <option value="In Progress">In Progress</option>
-              <option value="Retired">Retired</option>
-              <option value="Hired">Hired</option>
-            </select>
+              Date of Birth:
+            </label>
+            <input
+              type="date"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              value={dateOfBirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-2"
+            />
           </div>
           <button
             type="submit"
-            className="save-button bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-500 text-white rounded-lg p-2 mt-2"
           >
-            Save Changes
+            Update
           </button>
         </form>
-        <div className="image-container flex justify-center items-center w-full lg:w-1/2">
-          <img
-            className="rounded-lg shadow-lg border h-100 lg:h-120 w-auto max-w-full object-cover"
-            src="https://i.pinimg.com/564x/d8/39/66/d83966edf99f1d7e5322503ad4ff57f6.jpg"
-            alt="Example Image"
-          />
-        </div>
       </div>
     </div>
   );
