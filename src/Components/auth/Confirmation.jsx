@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Assuming you are using react-router for navigation
+import { useNavigate } from "react-router-dom"; 
 
 const Confirmation = () => {
   const [confirmationCode, setConfirmationCode] = useState(Array(6).fill(""));
   const [error, setError] = useState("");
   const inputRefs = useRef([]);
-  const navigate = useNavigate(); // Use navigate for redirection
+  const navigate = useNavigate(); 
 
   const handleConfirmation = (e) => {
     e.preventDefault();
